@@ -1,0 +1,20 @@
+export const en = {
+  stepm : 'STEPM',
+  descriptionLogin: 'STEPM is a web3 fitness and lifestyle mobile app where you can earn rewards just by movement like walking, running and cycling',
+  connectWallet: 'CONNECT WALLET',
+  account: 'ACCOUNT',
+  filter: 'Filter',
+  filterBy: 'Filter by',
+  allPopularity: 'All Popularity',
+  allType: 'All Type',
+  allLevel:'All Level',
+  mint: 'Mint',
+  allPrice: 'All price',
+  inUse: 'IN USE',
+  notUsedYet: 'NOT USED YET',
+  forSale: 'FOR SALE',
+  balance: 'Balance',
+  note:'The minimum requirement level of shoes is level 5 \nShoes must be in the player’s account for 48 hours to be minted \nEach pair of shoes can be minted up to 6 time',
+  mintFee: 'Mint Fee:',
+
+}

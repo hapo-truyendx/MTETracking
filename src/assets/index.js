@@ -1,0 +1,18 @@
+export const image = {
+  appBackground: require('./app-bg.png'),
+  sneakerBackground: require('./menu-icon-sneakers.png'),
+  coinItem: require('./logo.png'),
+  loginImage: require('./login-image.png'),
+  loginBackground: require('./login-bg.png'),
+  metamask: require('./metamask.png'),
+  runner: require('./runner.png'),
+  filter: require('./filter.png'),
+  itemSneaker:  require('./walker-rare.png'),
+  bnbCoin:require('./bnb-coin.png'),
+  earn: require('./earn.png'),
+  box: require('./item-mint.png'),
+  close: require('./close.png'),
+  dropDown: require('./down-arrow.png'),
+  note: require('./note.png'),
+  plus: require('./plus.png'),
+}
