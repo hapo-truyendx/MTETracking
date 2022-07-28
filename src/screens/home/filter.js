@@ -13,8 +13,10 @@ import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 import SelectDropdown from 'react-native-select-dropdown';
+import { useNavigation } from '@react-navigation/native';
 
 const FilterScreen = () => {
+  const navigation = useNavigation();
   const countries = [
     {title: 'Egypt', cities: [{title: 'Cairo'}, {title: 'Alex'}]},
     {title: 'Canada', cities: [{title: 'Toronto'}, {title: 'Quebec City'}]},
@@ -30,7 +32,7 @@ const FilterScreen = () => {
           children={en.filterBy}
           style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress = {() => navigation.goBack()}>
           <Image source={image.close} style={{width: 36, height: 36}} />
         </TouchableOpacity>
       </View>

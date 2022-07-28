@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {image} from '../../assets';
@@ -6,6 +7,7 @@ import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 
 const ItemSneaker = () => {
+  const navigation = useNavigation();
   const typeStyle = {
     ...commonStyle.center,
     color: palette.white,
@@ -16,7 +18,8 @@ const ItemSneaker = () => {
     <View style={{margin: 5, marginBottom: 20}}>
       <TouchableOpacity
         style={{backgroundColor: palette.white, flex: 1, borderRadius: 8}}
-        activeOpacity={0.9}>
+        activeOpacity={0.9}
+        onPress={()=>{navigation.navigate('Detail')}}>
         <View style={{...commonStyle.row}}>
           <TextCusTom
             children={'Common'}
@@ -39,8 +42,8 @@ const ItemSneaker = () => {
         {/* //checkk dk  */}
         <Image
           source={image.itemSneaker}
-          // style={{width: windowWidth * 0.5 - 15, height: 200}}
-          style={{width: 300, height: 300}}
+          style={{width: windowWidth * 0.5 - 25, height: 200}}
+          // style={{width: 300, height: 300}}
         />
         <View style={{...commonStyle.row}}>
           <View style={{...commonStyle.row, padding: 5}}>
@@ -52,6 +55,9 @@ const ItemSneaker = () => {
             <TextCusTom children={'12'} />
           </View>
         </View>
+        {/* <View style={{position: 'absolute', backgroundColor:'rgba(0, 0, 0, 0.5)',width: windowWidth * 0.5 - 25, height: 270, ...commonStyle.center}}>
+          <Image source={image.check} style={{width: 100, height: 100,}}/>
+        </View> */}
       </TouchableOpacity>
       <View style={{...commonStyle.center, paddingVertical: 5}}>
         <TextCusTom

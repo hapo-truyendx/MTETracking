@@ -15,4 +15,16 @@ export const image = {
   dropDown: require('./down-arrow.png'),
   note: require('./note.png'),
   plus: require('./plus.png'),
+  check: require('./check.png'),
+  energy: require('./energy.png'),
+  time: require('./time.png'),
+  step: require('./step.png'),
+  start: require('./start.png'),
+  stop: require('./stop.png'),
+}
+export const menu = {
+  market: require('./menu-icon-market.png'),
+  sneaker: require('./menu-icon-sneakers.png'),
+  mint: require('./menu-icon-mint.png'),
+  profile: require('./menu-icon-profile.png')
 }

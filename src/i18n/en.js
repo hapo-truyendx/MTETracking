@@ -20,4 +20,5 @@ export const en = {
   withDraw: 'WITHDRAW',
   runHistory: 'RUN HISTORY',
   transation: 'TRANSATION',
+  choose: 'Choose Sneaker',
 }

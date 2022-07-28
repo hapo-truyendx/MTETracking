@@ -13,8 +13,10 @@ import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
 import {commonStyle} from '../../ultis/const';
 import ItemSneaker from '../itemSneaker/itemSneaker';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <ImageBackground
       style={styles.container}
@@ -45,7 +47,8 @@ const HomeScreen = () => {
               padding: 8,
               paddingHorizontal: 20,
               borderRadius: 5,
-            }}>
+            }}
+            onPress = {() => navigation.navigate('Filter')}>
             <Image
               source={image.filter}
               style={{width: 36, height: 36, marginRight: 15}}
