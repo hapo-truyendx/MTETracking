@@ -16,5 +16,8 @@ export const en = {
   balance: 'Balance',
   note:'The minimum requirement level of shoes is level 5 \nShoes must be in the player’s account for 48 hours to be minted \nEach pair of shoes can be minted up to 6 time',
   mintFee: 'Mint Fee:',
-
+  deposit: 'DEPOSIT',
+  withDraw: 'WITHDRAW',
+  runHistory: 'RUN HISTORY',
+  transation: 'TRANSATION',
 }
