@@ -6,7 +6,9 @@
  * @flow strict-local
  */
 
-import React from 'react';
+ import * as React from 'react';
+//  import './global';
+ import './shim'
 import {SafeAreaView} from 'react-native';
 
 import DetailSneaker from './src/screens/detailScreen/detailScreen';
@@ -20,11 +22,7 @@ import MintScreen from './src/screens/mint/mintScreen';
 import ProfileScreen from './src/screens/profile/profileScreen';
 import SneakerScreen from './src/screens/sneakers/sneakerScreen';
 import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import BottomNavigation from './src/navigation/bottomNavigation';
 import LoginStack from './src/navigation/auth/authNavigation';
-
-const Tab = createBottomTabNavigator();
 
 const App = () => {
   const backgroundStyle = {
