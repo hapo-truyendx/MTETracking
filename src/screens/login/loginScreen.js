@@ -6,6 +6,7 @@ import { en } from '../../i18n/en';
 import { palette } from '../../ultis/color';
 import { windowHeight, windowWidth } from '../../ultis/const';
 import { useWalletConnect,withWalletConnect } from '@walletconnect/react-native-dapp';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Web3 from 'web3';
 
@@ -15,7 +16,7 @@ const LoginScreen = () => {
     const web3 = new Web3('http://localhost:7545');
     const newWallet = web3.eth.accounts.wallet.create(1);
     const newAccount = newWallet[0];
-    console.log(connector);
+    console.log(connector.connected);
   }, [])
   const connectWallet = React.useCallback(() => {
     return connector.connect()
@@ -69,7 +70,7 @@ const LoginScreen = () => {
             justifyContent: 'center',
             borderRadius: 5,
           }}
-          onPress={() => connector.connect()}
+          onPress={connectWallet}
         >
           <Image
             source={image.metamask}
@@ -84,10 +85,10 @@ const LoginScreen = () => {
     </View>
   );
 };
-// export default LoginScreen;
-export default withWalletConnect(LoginScreen, {
-  redirectUrl: Platform.OS === 'web' ? window.location.origin : 'yourappscheme://',
-  storageOptions: {
-    asyncStorage: AsyncStorage,
-  },
-});
+export default LoginScreen;
+// export default withWalletConnect(LoginScreen, {
+//   redirectUrl: Platform.OS === 'web' ? window.location.origin : 'yourappscheme://',
+//   storageOptions: {
+//     asyncStorage: AsyncStorage,
+//   },
+// });

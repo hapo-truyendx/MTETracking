@@ -12,7 +12,7 @@ import ProfileStack from './stack/profileStack';
 
 const Tab = createBottomTabNavigator();
 
-const BottomNavigation = () => {
+const BottomTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -128,4 +128,4 @@ const BottomNavigation = () => {
   );
 };
 
-export default BottomNavigation;
+export default BottomTab;

@@ -10,7 +10,6 @@ export const TextCusTom = ({
   ellipsizeMode = 'tail',
   ...props
 }) => {
-  console.log(style);
   return (
     <Text
       numberOfLines={numberOfLines}
