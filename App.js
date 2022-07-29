@@ -26,8 +26,8 @@ import LoginStack from './src/navigation/auth/authNavigation';
 import { useWalletConnect,withWalletConnect } from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomTab from './src/navigation/bottomNavigation';
-import { store } from './app/store'
-import { Provider } from 'react-redux'
+// import { store } from './app/store'
+// import { Provider } from 'react-redux'
 
 const App = () => {
   const connector = useWalletConnect();
@@ -39,7 +39,7 @@ const App = () => {
   },[connector])
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
     <SafeAreaView style={backgroundStyle}>
       <NavigationContainer>
         {
@@ -47,7 +47,7 @@ const App = () => {
         }
       </NavigationContainer>
     </SafeAreaView>
-    </Provider>
+    // </Provider>
   );
 };
 
