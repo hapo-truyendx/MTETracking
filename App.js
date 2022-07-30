@@ -9,6 +9,7 @@
 import * as React from 'react';
 //  import './global';
 import './shim'
+// import crypto from 'crypto'
 import { SafeAreaView } from 'react-native';
 
 import DetailSneaker from './src/screens/detailScreen/detailScreen';
