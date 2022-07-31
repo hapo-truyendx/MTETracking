@@ -23,38 +23,53 @@ import ProfileScreen from './src/screens/profile/profileScreen';
 import SneakerScreen from './src/screens/sneakers/sneakerScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import LoginStack from './src/navigation/auth/authNavigation';
-import { useWalletConnect,withWalletConnect } from '@walletconnect/react-native-dapp';
+import { useWalletConnect, withWalletConnect } from '@walletconnect/react-native-dapp';
+import WalletConnectProvider from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomTab from './src/navigation/bottomNavigation';
-import { store } from './app/store'
-import { Provider } from 'react-redux'
+// import { store } from './app/store'
+// import { Provider } from 'react-redux'
 
 const App = () => {
   const connector = useWalletConnect();
   const backgroundStyle = {
     flex: 1,
   };
-  React.useEffect(()=>{
+  React.useEffect(() => {
     console.log('connect', connector.connected);
-  },[connector])
+  }, [connector])
 
   return (
-    <Provider store={store}>
-    <SafeAreaView style={backgroundStyle}>
-      <NavigationContainer>
-        {
-          !connector.connected ? <LoginStack /> : <BottomTab />
-        }
-      </NavigationContainer>
-    </SafeAreaView>
-    </Provider>
+    <WalletConnectProvider
+      bridge="https://bridge.walletconnect.org"
+      clientMeta={{
+        description: 'Connect with WalletConnect',
+        url: 'https://walletconnect.org',
+        icons: ['https://walletconnect.org/walletconnect-logo.png'],
+        name: 'WalletConnect',
+      }}
+      redirectUrl={Platform.OS === 'web' ? window.location.origin : 'yourappscheme://'}
+      storageOptions={{
+        asyncStorage: AsyncStorage,
+      }}>
+    {/* <Provider store={store}> */}
+        <SafeAreaView style={backgroundStyle}>
+          <NavigationContainer>
+            {
+              <LoginStack />
+              // connector.connected ? <LoginStack /> : <BottomTab />
+            }
+          </NavigationContainer>
+        </SafeAreaView>
+     {/* </Provider> */}
+    </WalletConnectProvider >
   );
 };
 
-// export default App;
-export default withWalletConnect(App, {
-  redirectUrl: Platform.OS === 'web' ? window.location.origin : 'yourappscheme://',
-  storageOptions: {
-    asyncStorage: AsyncStorage,
-  },
-});
+export default App;
+// export default withWalletConnect(App, {
+//   redirectUrl: Platform.OS === 'web' ? window.location.origin : 'yourappscheme://',
+//   storageOptions: {
+//     asyncStorage: AsyncStorage,
+//   },
+// });
