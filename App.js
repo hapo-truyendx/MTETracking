@@ -56,7 +56,8 @@ const App = () => {
         <SafeAreaView style={backgroundStyle}>
           <NavigationContainer>
             {
-              <LoginStack />
+              // <LoginStack />
+              <BottomTab />
               // connector.connected ? <LoginStack /> : <BottomTab />
             }
           </NavigationContainer>

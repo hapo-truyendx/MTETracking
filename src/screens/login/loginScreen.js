@@ -15,44 +15,14 @@ import ApiConfig from '../../config/api-config';
 const LoginScreen = () => {
   const connector = useWalletConnect();
   const [messageLogin, setLogin] = useState('');
-  // const provider = new WalletConnectProvider({
-  //   rpc: {
-  //     56: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
-  //   },
-  //   chainId: 56,
-  //   connector: connector,
-  //   qrcode: false,
-  // });
-  // await provider.enable();
-  // const ethers_provider = new ethers.providers.Web3Provider(provider);
-  // const signer = ethers_provider.getSigner();
-  const signSignal = async () => {
-    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/');
-    // const newWallet = web3.eth.accounts.wallet.create(1);
-    // console.log(connector.accounts[0]);
-    // const a = await web3.utils.getSignatureParameters(messageLogin)
-    const accounts = await web3.eth.getAccounts()
-    console.log('account', accounts,);
-    const signature = await web3.eth.personal.sign(web3.utils.utf8ToHex(messageLogin), ApiConfig.DEMO_WALLET)
-    console.log('signature', signature);
-  }
-  // React.useEffect(() => {
-  //   signSignal()
-  //   // const newAccount = newWallet[0];
-  // }, [messageLogin])
   const connectWallet = async () => {
-    // console.log(connector);
     await loginWallet(connector.accounts[0])
-
     connector.connect()
   };
 
   const loginWallet = async (wallet) => {
-    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/')
-    // console.log('vo day');
     const result = await validateLogin(wallet)
     setLogin(result.message);
-    // console.log(result.message);
     const msgParams = [
       connector.accounts[0],
       (result.message)// Required

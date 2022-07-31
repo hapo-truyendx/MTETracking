@@ -7,6 +7,7 @@ import ApiConfig from '../../config/api-config';
 const request = axios.create({
   baseURL: ApiConfig.BASE_URL,
   timeout: 15000,
+  headers: { Authorization: `Bearer ${ApiConfig.DEMO_TOKEN}` }
 });
 
 const apiClient = {

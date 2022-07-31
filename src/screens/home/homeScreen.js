@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -14,9 +14,27 @@ import {palette} from '../../ultis/color';
 import {commonStyle} from '../../ultis/const';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 import { useNavigation } from '@react-navigation/native';
+import { getListNft } from '../service/marketApi';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+
+  const [listNft, setListNft] = useState([]);
+
+  const getListNfts = async() => {
+    const result = await getListNft()
+    if(result.status == 'success') {
+      setListNft(result.nfts);
+    }
+    else {
+      getListNfts()
+    }
+    
+    console.log(result);
+  }
+  useEffect(()=>{
+    getListNfts()
+  }, [])
   return (
     <ImageBackground
       style={styles.container}
@@ -58,7 +76,7 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={{marginHorizontal: 5, flex: 1}}>
-        <FlatList data={[1, 2, 3,4,5]} renderItem = {() => {
+        <FlatList data={listNft} renderItem = {() => {
           return <ItemSneaker />
         }} 
         keyExtractor={(index) => index.toString()}
