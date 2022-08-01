@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {
   View,
   Image,
@@ -16,6 +16,7 @@ import Header from '../header/header';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 
 const SneakerScreen = () => {
+  const [indexTab, setIndexTab] = useState(0);
   return (
     <ImageBackground
       style={styles.container}
@@ -34,15 +35,33 @@ const SneakerScreen = () => {
         />
       </View>
       <View style={{...commonStyle.row, padding: 10}}>
-          <View style={{backgroundColor:palette.keppelColor, padding:10, borderTopLeftRadius: 5,borderBottomLeftRadius: 5}}>
-            <TextCusTom children={en.inUse} style ={styles.textBottom}/>
-          </View>
-          <View  style={{backgroundColor:palette.waterLeaf,padding:10,borderLeftWidth:1, borderRightWidth:1, borderColor:palette.white}}>
-            <TextCusTom children={en.notUsedYet} style ={styles.textBottom}/>
-          </View>
-          <View  style={{backgroundColor: palette.waterLeaf, padding:10, borderTopRightRadius: 5,borderBottomRightRadius: 5}}>
-            <TextCusTom children={en.forSale} style ={styles.textBottom}/>
-          </View>
+        <TouchableOpacity
+          onPress={() => setIndexTab(0)}
+          style={{
+            backgroundColor:
+              indexTab === 0 ? palette.keppelColor : palette.waterLeaf,
+            ...styles.bottomTab,
+          }}>
+          <TextCusTom children={en.inUse} style={styles.textBottom} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setIndexTab(1)}
+          style={{
+            backgroundColor:
+              indexTab === 1 ? palette.keppelColor : palette.waterLeaf,
+            ...styles.bottomTabCenter,
+          }}>
+          <TextCusTom children={en.notUsedYet} style={styles.textBottom} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setIndexTab(2)}
+          style={{
+            backgroundColor:
+              indexTab === 2 ? palette.keppelColor : palette.waterLeaf,
+            ...styles.bottomTab,
+          }}>
+          <TextCusTom children={en.forSale} style={styles.textBottom} />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -56,6 +75,17 @@ const styles = StyleSheet.create({
   textBottom: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: palette.white
-  }
+    color: palette.white,
+  },
+  bottomTab: {
+    padding: 10,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+  bottomTabCenter: {
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderColor: palette.white,
+    ...styles.bottomTab,
+  },
 });

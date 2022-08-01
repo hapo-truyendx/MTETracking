@@ -11,30 +11,30 @@ import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
 import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
-import {commonStyle} from '../../ultis/const';
+import {commonStyle, status} from '../../ultis/const';
 import ItemSneaker from '../itemSneaker/itemSneaker';
-import { useNavigation } from '@react-navigation/native';
-import { getListNft } from '../service/marketApi';
+import {useNavigation} from '@react-navigation/native';
+import {getListNft} from '../service/marketApi';
+import {typeScreen} from '../../ultis/typeScreen';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   const [listNft, setListNft] = useState([]);
 
-  const getListNfts = async() => {
-    const result = await getListNft()
-    if(result.status == 'success') {
+  const getListNfts = async () => {
+    const result = await getListNft();
+    if (result.status === status.success) {
       setListNft(result.nfts);
+    } else {
+      getListNfts();
     }
-    else {
-      getListNfts()
-    }
-    
+
     console.log(result);
-  }
-  useEffect(()=>{
-    getListNfts()
-  }, [])
+  };
+  useEffect(() => {
+    getListNfts();
+  }, []);
   return (
     <ImageBackground
       style={styles.container}
@@ -66,7 +66,7 @@ const HomeScreen = () => {
               paddingHorizontal: 20,
               borderRadius: 5,
             }}
-            onPress = {() => navigation.navigate('Filter')}>
+            onPress={() => navigation.navigate('Filter')}>
             <Image
               source={image.filter}
               style={{width: 36, height: 36, marginRight: 15}}
@@ -76,14 +76,22 @@ const HomeScreen = () => {
         </View>
       </View>
       <View style={{marginHorizontal: 5, flex: 1}}>
-        <FlatList data={listNft} renderItem = {() => {
-          return <ItemSneaker />
-        }} 
-        keyExtractor={(index) => index.toString()}
-        numColumns={2}
-        style ={{flex: 1}}
+        <FlatList
+          data={listNft}
+          renderItem={(item, index) => {
+            return (
+              <ItemSneaker
+                key={index}
+                nfts={item.item}
+                type={typeScreen.market}
+              />
+            );
+          }}
+          key={index => index}
+          keyExtractor={index => index.toString()}
+          numColumns={2}
+          style={styles.container}
         />
-        
       </View>
     </ImageBackground>
   );
