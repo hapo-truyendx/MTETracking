@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {View, Text,StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
 import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 
-const ItemTransation = () => {
+const ItemTransation = transaction => {
+  console.log('item',transaction);
   return (
     <View
       style={{
@@ -18,10 +19,13 @@ const ItemTransation = () => {
         borderRadius: 8,
       }}>
       <View style={{...commonStyle.row_between}}>
-       <TextCusTom children={'22-05-11 14:21'} style={styles.text}/>
-       <TextCusTom children={'-120 STEPM'} style={styles.text}/>
-       <TextCusTom children={en.withDraw} style={styles.text}/>
-       <TextCusTom children={'Pending'} style={styles.text}/>
+        <TextCusTom children={transaction.created_at} style={styles.text} />
+        <TextCusTom children={transaction.amount} style={styles.text} />
+        <TextCusTom children={transaction.currency} style={styles.text} />
+        <TextCusTom
+          children={transaction.transaction_type}
+          style={styles.text}
+        />
       </View>
     </View>
   );
@@ -29,8 +33,8 @@ const ItemTransation = () => {
 
 export default ItemTransation;
 const styles = StyleSheet.create({
-  text:{
+  text: {
     fontSize: 14,
-    color:palette.keppelColor
-  }
-})
+    color: palette.keppelColor,
+  },
+});

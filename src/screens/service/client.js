@@ -7,7 +7,7 @@ import ApiConfig from '../../config/api-config';
 const request = axios.create({
   baseURL: ApiConfig.BASE_URL,
   timeout: 15000,
-  headers: { Authorization: `Bearer ${ApiConfig.DEMO_TOKEN}` }
+  headers: {Authorization: `Bearer ${ApiConfig.DEMO_TOKEN}`},
 });
 
 const apiClient = {
@@ -18,10 +18,10 @@ const apiClient = {
       url: url,
       baseURL,
     })
-      .then((response) => {
+      .then(response => {
         return response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   },
@@ -33,10 +33,10 @@ const apiClient = {
       data: data,
       baseURL,
     })
-      .then((response) => {
+      .then(response => {
         return response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   },
@@ -47,10 +47,10 @@ const apiClient = {
       data: data,
       baseURL,
     })
-      .then((response) => {
+      .then(response => {
         return response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   },
@@ -61,10 +61,10 @@ const apiClient = {
       data: data,
       baseURL,
     })
-      .then((response) => {
+      .then(response => {
         return response.data;
       })
-      .catch((err) => {
+      .catch(err => {
         throw err;
       });
   },

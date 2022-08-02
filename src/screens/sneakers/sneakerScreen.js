@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderColor: palette.white,
-    ...styles.bottomTab,
+    padding: 10,
   },
 });
