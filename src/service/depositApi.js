@@ -1,5 +1,5 @@
 import { apiClient } from './client';
-import ApiConfig from '../../config/api-config';
+import ApiConfig from '../config/api-config';
 
 export function depositNft(id, wallet) {
     return apiClient.post(`${ApiConfig.BASE_URL}${ApiConfig.DEPOSIT_NFT}`, {

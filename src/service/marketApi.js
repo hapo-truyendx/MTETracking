@@ -1,5 +1,5 @@
+import ApiConfig from '../config/api-config';
 import {apiClient} from './client';
-import ApiConfig from '../../config/api-config';
 
 export function getListNft() {
   return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.LIST_NFT}`);

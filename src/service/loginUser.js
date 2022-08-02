@@ -1,6 +1,7 @@
 
+import ApiConfig from '../config/api-config';
 import { apiClient } from './client';
-import ApiConfig from '../../config/api-config';
+
 
 export function validateLogin(wallet) {
   return apiClient.post(`${ApiConfig.BASE_URL}${ApiConfig.LOGIN}`, {

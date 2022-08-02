@@ -14,7 +14,7 @@ import {palette} from '../../ultis/color';
 import {commonStyle, status} from '../../ultis/const';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 import {useNavigation} from '@react-navigation/native';
-import {getListNft} from '../service/marketApi';
+import {getListNft} from '../../service/marketApi';
 import {typeScreen} from '../../ultis/typeScreen';
 
 const HomeScreen = () => {
@@ -30,7 +30,7 @@ const HomeScreen = () => {
       getListNfts();
     }
 
-    console.log(result);
+    // console.log(result);
   };
   useEffect(() => {
     getListNfts();

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { image } from '../../assets';
 import { TextCusTom } from '../../components/textCustom';
@@ -6,34 +6,60 @@ import { en } from '../../i18n/en';
 import { palette } from '../../ultis/color';
 import { windowHeight, windowWidth } from '../../ultis/const';
 import { useWalletConnect, withWalletConnect } from '@walletconnect/react-native-dapp';
+import { convertUtf8ToHex } from "@walletconnect/utils";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Web3 from 'web3';
-import { validateLogin, authLogin } from '../service/loginUser';
-import ApiConfig from '../../config/api-config';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginRequest } from '../../redux/action/loginAction';
+import { validateLogin, authLogin } from '../../service/loginUser';
 
 const LoginScreen = () => {
   const connector = useWalletConnect();
+  const dispatch = useDispatch();
+  const state = useSelector(state => state.login)
+  console.log(state, 'selector');
   const [messageLogin, setLogin] = useState('');
   const connectWallet = async () => {
     await loginWallet(connector.accounts[0])
     connector.connect()
   };
 
-  const loginWallet = async (wallet) => {
-    const result = await validateLogin(wallet)
-    setLogin(result.message);
-    const msgParams = [
-      connector.accounts[0],
-      (result.message)// Required
-    ]
-    await connector.signPersonalMessage(msgParams).then(async (sig) => {
-      // console.log('sig', web3.utils.hexToUtf8(sig));
-      const resultAuth = await authLogin(wallet, sig)
-      //luu local storeage
-      console.log(resultAuth);
-    });
+  const loginWallet = (wallet) => {
+    dispatch(loginRequest(wallet));
+    // const result = await validateLogin(wallet)
+    // setLogin(result.message);
+    // const msgParams = [
+    //   connector.accounts[0],
+    //   (result.message)// Required
+    // ]
+    // await connector.signPersonalMessage(msgParams).then(async (sig) => {
+    //   // console.log('sig', web3.utils.hexToUtf8(sig));
+    //   const resultAuth = await authLogin(wallet, sig)
+    //   //luu local storeage
+    //   console.log(resultAuth);
+    // });
   }
+  
+  const connectMetamask = async(state) => {
+    if (state != undefined) {
+      const msgParams = [
+        connector?.accounts[0], 
+        convertUtf8ToHex(state)// Required
+      ]
+      console.log(msgParams, 'msg');
+      await connector.signPersonalMessage(msgParams).then(async (sig) => {
+        console.log('sig', sig);
+        // const resultAuth = await authLogin(wallet, sig)
+        //luu local storeage
+        // console.log(resultAuth);
+      });
+    }
+  }
+
+  useEffect( () => {
+    connectMetamask(state.messageLogin);
+  }, [state])
 
   return (
     <View style={{ flex: 1 }}>

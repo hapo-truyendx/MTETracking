@@ -4,10 +4,10 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 // import {useDispatch} from 'react-redux';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
+import { buyNft } from '../../service/marketApi';
 import {palette} from '../../ultis/color';
 import {commonStyle, status, windowWidth} from '../../ultis/const';
 import {typeScreen} from '../../ultis/typeScreen';
-import {buyNft} from '../service/marketApi';
 
 const ItemSneaker = ({nfts, type}) => {
   const navigation = useNavigation();
