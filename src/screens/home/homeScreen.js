@@ -16,21 +16,16 @@ import ItemSneaker from '../itemSneaker/itemSneaker';
 import {useNavigation} from '@react-navigation/native';
 import {getListNft} from '../../service/marketApi';
 import {typeScreen} from '../../ultis/typeScreen';
+import { useDispatch, useSelector } from 'react-redux';
+import { getNftsRequest } from '../../redux/action/marketAction';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const listNft = useSelector(state => state.market.nfts)
 
-  const [listNft, setListNft] = useState([]);
-
-  const getListNfts = async () => {
-    const result = await getListNft();
-    if (result.status === status.success) {
-      setListNft(result.nfts);
-    } else {
-      getListNfts();
-    }
-
-    // console.log(result);
+  const getListNfts =  () => {
+    dispatch(getNftsRequest())
   };
   useEffect(() => {
     getListNfts();
@@ -87,8 +82,8 @@ const HomeScreen = () => {
               />
             );
           }}
-          key={index => index}
-          keyExtractor={index => index.toString()}
+          // key={index => index}
+          keyExtractor={index => index.toString() + Math.random()}
           numColumns={2}
           style={styles.container}
         />

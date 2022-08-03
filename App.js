@@ -10,7 +10,7 @@ import * as React from 'react';
 //  import './global';
 import './shim'
 import { SafeAreaView } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import LoginStack from './src/navigation/auth/authNavigation';
 import { useWalletConnect, withWalletConnect } from '@walletconnect/react-native-dapp';
@@ -18,17 +18,26 @@ import WalletConnectProvider from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomTab from './src/navigation/bottomNavigation';
 import configureStore from './src/redux/store'
+import { getItem } from './src/service/storage';
+import { Constants } from './src/ultis/const';
 
 const { persistor, store } = configureStore();
 
 const App = () => {
   const connector = useWalletConnect();
+  const [tokenLogin, setState] = React.useState('');
   const backgroundStyle = {
     flex: 1,
   };
   React.useEffect(() => {
-    console.log('connect', connector.connected);
+    const token = getItem(Constants.TOKEN);
+    if(token) {
+      setState(token);
+    }
+    
   }, [connector])
+
+
 
   return (
     <WalletConnectProvider
@@ -47,9 +56,9 @@ const App = () => {
         <SafeAreaView style={backgroundStyle}>
           <NavigationContainer>
             {
-              <LoginStack />
+              // <LoginStack />
               // <BottomTab />
-              // connector.connected ? <LoginStack /> : <BottomTab />
+              !tokenLogin ? <LoginStack /> : <BottomTab />
             }
           </NavigationContainer>
         </SafeAreaView>

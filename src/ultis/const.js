@@ -23,3 +23,8 @@ export const status = {
   success: 'success',
   error: 'error',
 };
+
+export const Constants = {
+  TOKEN: 'TOKEN',
+  USER_ID: 'USER_ID'
+}

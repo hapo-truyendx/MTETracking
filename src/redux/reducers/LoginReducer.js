@@ -2,6 +2,7 @@ import * as types from '../action/type'
 const initialState = {
     messageLogin: '',
     wallet: '',
+    token: ''
 }
 
 const reducerLogin = (state = initialState, action) => {
@@ -16,6 +17,17 @@ const reducerLogin = (state = initialState, action) => {
             return {
                 ...state,
                 messageLogin: action.data,
+            }
+        }
+        case types.AUTH_REQUEST: {
+            return {
+                ...state,
+            }
+        }
+        case types.AUTH_SUCCESS: {
+            return {
+                ...state,
+                token: action.data
             }
         }
         default:

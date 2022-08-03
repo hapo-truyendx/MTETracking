@@ -11,14 +11,13 @@ import { convertUtf8ToHex } from "@walletconnect/utils";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Web3 from 'web3';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest } from '../../redux/action/loginAction';
+import { authRequest, loginRequest } from '../../redux/action/loginAction';
 import { validateLogin, authLogin } from '../../service/loginUser';
 
 const LoginScreen = () => {
   const connector = useWalletConnect();
   const dispatch = useDispatch();
-  const state = useSelector(state => state.login)
-  console.log(state, 'selector');
+  const stateLogin = useSelector(state => state.login)
   const [messageLogin, setLogin] = useState('');
   const connectWallet = async () => {
     await loginWallet(connector.accounts[0])
@@ -27,18 +26,7 @@ const LoginScreen = () => {
 
   const loginWallet = (wallet) => {
     dispatch(loginRequest(wallet));
-    // const result = await validateLogin(wallet)
-    // setLogin(result.message);
-    // const msgParams = [
-    //   connector.accounts[0],
-    //   (result.message)// Required
-    // ]
-    // await connector.signPersonalMessage(msgParams).then(async (sig) => {
-    //   // console.log('sig', web3.utils.hexToUtf8(sig));
-    //   const resultAuth = await authLogin(wallet, sig)
-    //   //luu local storeage
-    //   console.log(resultAuth);
-    // });
+    connectMetamask(stateLogin.messageLogin);
   }
   
   const connectMetamask = async(state) => {
@@ -47,19 +35,17 @@ const LoginScreen = () => {
         connector?.accounts[0], 
         convertUtf8ToHex(state)// Required
       ]
-      console.log(msgParams, 'msg');
       await connector.signPersonalMessage(msgParams).then(async (sig) => {
-        console.log('sig', sig);
-        // const resultAuth = await authLogin(wallet, sig)
-        //luu local storeage
+        dispatch(authRequest({wallet:connector?.accounts[0], sig}))
+        // const resultAuth = await authLogin(connector?.accounts[0], sig)
         // console.log(resultAuth);
       });
     }
   }
 
-  useEffect( () => {
-    connectMetamask(state.messageLogin);
-  }, [state])
+  // useEffect( () => {
+  //   connectMetamask(state.messageLogin);
+  // }, [state.messageLogin])
 
   return (
     <View style={{ flex: 1 }}>
