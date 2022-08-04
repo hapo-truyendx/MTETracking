@@ -1,9 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import { useDispatch } from 'react-redux';
 // import {useDispatch} from 'react-redux';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
+import { onBuyItemNfts } from '../../redux/action/marketAction';
 import { buyNft } from '../../service/marketApi';
 import {palette} from '../../ultis/color';
 import {commonStyle, status, windowWidth} from '../../ultis/const';
@@ -11,7 +13,7 @@ import {typeScreen} from '../../ultis/typeScreen';
 
 const ItemSneaker = ({nfts, type}) => {
   const navigation = useNavigation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // console.log(type, nfts.item);
   const typeStyle = {
     ...commonStyle.center,
@@ -20,12 +22,13 @@ const ItemSneaker = ({nfts, type}) => {
     padding: 5,
   };
   const onBuyNft = async () => {
+    dispatch(onBuyItemNfts(nfts.id))
     const response = await buyNft(nfts.id);
-    if (response.status === status.success) {
-      // dispatch()
-      //dispatch home
-      console.log(response);
-    }
+    // if (response.status === status.success) {
+    //   // dispatch()
+    //   //dispatch home
+    //   console.log(response);
+    // }
   };
   return (
     <View style={{margin: 5, marginBottom: 20}}>

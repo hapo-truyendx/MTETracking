@@ -23,13 +23,15 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const listNft = useSelector(state => state.market.nfts)
+  const filter = useSelector(state => state.market.filter)
 
   const getListNfts =  () => {
-    dispatch(getNftsRequest())
+    dispatch(getNftsRequest(filter))
   };
   useEffect(() => {
+    console.log(filter);
     getListNfts();
-  }, []);
+  }, [filter]);
   return (
     <ImageBackground
       style={styles.container}
@@ -82,7 +84,6 @@ const HomeScreen = () => {
               />
             );
           }}
-          // key={index => index}
           keyExtractor={index => index.toString() + Math.random()}
           numColumns={2}
           style={styles.container}

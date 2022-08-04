@@ -11,63 +11,73 @@ const request = axios.create({
 });
 
 const apiClient = {
-  get: (url, baseURL = ApiConfig.BASE_URL) => {
-    // console.log('url get: ', url);
+  get: (url, data = {}) => {
+    console.log('url get: ', data);
     return request({
       method: 'get',
       url: url,
-      baseURL,
+      params: data
     })
       .then((response) => {
         return response.data;
       })
       .catch((err) => {
-        throw err;
+        return err;
       });
   },
-  post: (url, data, baseURL = ApiConfig.BASE_URL) => {
-    console.log('post ', {url}, {data});
+  post: (url, data) => {
+    console.log('post ', { url }, { data });
     return request({
       method: 'post',
       url: url,
       data: data,
-      baseURL,
     })
       .then((response) => {
         return response.data;
       })
       .catch((err) => {
-        throw err;
+        return err;
       });
   },
-  delete: (url, data, baseURL = ApiConfig.BASE_URL) => {
+  patch: (url, data) => {
+    console.log('patch ', { url }, { data });
+    return request({
+      method: 'patch',
+      url: url,
+      data: data,
+    })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  },
+  delete: (url, data) => {
     return request({
       method: 'delete',
       url: url,
       data: data,
-      baseURL,
     })
       .then((response) => {
         return response.data;
       })
       .catch((err) => {
-        throw err;
+        return err;
       });
   },
-  put: (url, data, baseURL = ApiConfig.BASE_URL) => {
+  put: (url, data) => {
     return request({
       method: 'put',
       url: url,
       data: data,
-      baseURL,
     })
       .then((response) => {
         return response.data;
       })
       .catch((err) => {
-        throw err;
+        return err;
       });
   },
 };
-
 export {apiClient};

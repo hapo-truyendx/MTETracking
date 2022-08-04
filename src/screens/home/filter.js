@@ -14,13 +14,14 @@ import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 import SelectDropdown from 'react-native-select-dropdown';
 import { useNavigation } from '@react-navigation/native';
+import { filterType } from '../../ultis/constFilter';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterMarket } from '../../redux/action/marketAction';
 
 const FilterScreen = () => {
   const navigation = useNavigation();
-  const countries = [
-    {title: 'Egypt', cities: [{title: 'Cairo'}, {title: 'Alex'}]},
-    {title: 'Canada', cities: [{title: 'Toronto'}, {title: 'Quebec City'}]},
-  ];
+  const dispath = useDispatch();
+  const filter = useSelector(state => state.market.filter);
 
   return (
     <ImageBackground
@@ -38,15 +39,20 @@ const FilterScreen = () => {
       </View>
       <View style={{paddingVertical: 10, marginTop: 10,}}>
         <SelectDropdown
-          data={countries}
+          data={filterType.popularityList}
+          defaultValue = {filterType.popularityList[0].value}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            const filterPopularity = {
+              ...filter,
+              popularity: selectedItem.id
+            }
+            dispath(filterMarket(filterPopularity))
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem.title;
+            return selectedItem.value;
           }}
           rowTextForSelection={(item, index) => {
-            return item.title;
+            return item.value;
           }}
           renderDropdownIcon={isOpened => {
             return (
@@ -55,7 +61,7 @@ const FilterScreen = () => {
           }}
           buttonStyle={styles.dropdown2BtnStyle}
           buttonTextStyle={styles.dropdown2BtnTxtStyle}
-          defaultButtonText={en.allPopularity}
+          defaultButtonText={filter.popularity??filterType.popularityList[0].value}
           dropdownIconPosition={'right'}
           dropdownStyle={styles.dropdown2DropdownStyle}
           rowStyle={styles.dropdown2RowStyle}
@@ -64,15 +70,19 @@ const FilterScreen = () => {
       </View>
       <View style={{paddingVertical: 10}}>
         <SelectDropdown
-          data={countries}
+          data={filterType.typeList}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            const filterType = {
+              ...filter,
+              type: selectedItem.id
+            }
+            dispath(filterMarket(filterType))
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem.title;
+            return selectedItem.value;
           }}
           rowTextForSelection={(item, index) => {
-            return item.title;
+            return item.value;
           }}
           renderDropdownIcon={isOpened => {
             return (
@@ -81,7 +91,7 @@ const FilterScreen = () => {
           }}
           buttonStyle={styles.dropdown2BtnStyle}
           buttonTextStyle={styles.dropdown2BtnTxtStyle}
-          defaultButtonText={en.allType}
+          defaultButtonText={filter.type??filterType.typeList[0].value}
           dropdownIconPosition={'right'}
           dropdownStyle={styles.dropdown2DropdownStyle}
           rowStyle={styles.dropdown2RowStyle}
@@ -90,15 +100,19 @@ const FilterScreen = () => {
       </View>
       <View style={{paddingVertical: 10}}>
         <SelectDropdown
-          data={countries}
+          data={filterType.levelList}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            const filterLevel = {
+              ...filter,
+              level: selectedItem.id
+            }
+            dispath(filterMarket(filterLevel))
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem.title;
+            return selectedItem.value;
           }}
           rowTextForSelection={(item, index) => {
-            return item.title;
+            return item.value;
           }}
           renderDropdownIcon={isOpened => {
             return (
@@ -107,7 +121,7 @@ const FilterScreen = () => {
           }}
           buttonStyle={styles.dropdown2BtnStyle}
           buttonTextStyle={styles.dropdown2BtnTxtStyle}
-          defaultButtonText={en.allLevel}
+          defaultButtonText={filter.level??filterType.levelList[0].value}
           dropdownIconPosition={'right'}
           dropdownStyle={styles.dropdown2DropdownStyle}
           rowStyle={styles.dropdown2RowStyle}
@@ -116,15 +130,19 @@ const FilterScreen = () => {
       </View>
       <View style={{paddingVertical: 10}}>
         <SelectDropdown
-          data={countries}
+          data={filterType.mintList}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            const filterMint = {
+              ...filter,
+              mint_count: selectedItem.id
+            }
+            dispath(filterMarket(filterMint))
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem.title;
+            return selectedItem.value;
           }}
           rowTextForSelection={(item, index) => {
-            return item.title;
+            return item.value;
           }}
           renderDropdownIcon={isOpened => {
             return (
@@ -133,7 +151,7 @@ const FilterScreen = () => {
           }}
           buttonStyle={styles.dropdown2BtnStyle}
           buttonTextStyle={styles.dropdown2BtnTxtStyle}
-          defaultButtonText={en.mint}
+          defaultButtonText={filter.mint_count??filterType.mintList[0].value}
           dropdownIconPosition={'right'}
           dropdownStyle={styles.dropdown2DropdownStyle}
           rowStyle={styles.dropdown2RowStyle}
@@ -142,15 +160,19 @@ const FilterScreen = () => {
       </View>
       <View style={{paddingVertical: 10}}>
         <SelectDropdown
-          data={countries}
+          data={filterType.priceList}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            const filterPrice = {
+              ...filter,
+              price: selectedItem.id
+            }
+            dispath(filterMarket(filterPrice))
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem.title;
+            return selectedItem.value;
           }}
           rowTextForSelection={(item, index) => {
-            return item.title;
+            return item.value;
           }}
           renderDropdownIcon={isOpened => {
             return (
@@ -159,7 +181,7 @@ const FilterScreen = () => {
           }}
           buttonStyle={styles.dropdown2BtnStyle}
           buttonTextStyle={styles.dropdown2BtnTxtStyle}
-          defaultButtonText={en.allPrice}
+          defaultButtonText={filter.price??filterType.priceList[0].value}
           dropdownIconPosition={'right'}
           dropdownStyle={styles.dropdown2DropdownStyle}
           rowStyle={styles.dropdown2RowStyle}

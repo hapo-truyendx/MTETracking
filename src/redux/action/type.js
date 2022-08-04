@@ -14,3 +14,7 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 //market
 export const LIST_NFTS_REQUEST = 'LIST_NFTS_REQUEST';
 export const LIST_NFTS_SUCCESS = 'LIST_NFTS_SUCCESS';
+
+//filter
+export const FILTER_MARKET ='FILTER_MARKET';
+export const BUY_NFTS = 'BUY_NFTS';
