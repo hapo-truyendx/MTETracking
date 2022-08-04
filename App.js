@@ -8,20 +8,23 @@
 
 import * as React from 'react';
 //  import './global';
-import './shim'
-import { SafeAreaView } from 'react-native';
-import { Provider, useSelector } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
+import './shim';
+import {SafeAreaView} from 'react-native';
+import {Provider, useSelector} from 'react-redux';
+import {NavigationContainer} from '@react-navigation/native';
 import LoginStack from './src/navigation/auth/authNavigation';
-import { useWalletConnect, withWalletConnect } from '@walletconnect/react-native-dapp';
+import {
+  useWalletConnect,
+  withWalletConnect,
+} from '@walletconnect/react-native-dapp';
 import WalletConnectProvider from '@walletconnect/react-native-dapp';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomTab from './src/navigation/bottomNavigation';
-import configureStore from './src/redux/store'
-import { getItem } from './src/service/storage';
-import { Constants } from './src/ultis/const';
+import configureStore from './src/redux/store';
+import {getItem} from './src/service/storage';
+import {Constants} from './src/ultis/const';
 
-const { persistor, store } = configureStore();
+const {persistor, store} = configureStore();
 
 const App = () => {
   const connector = useWalletConnect();
@@ -31,14 +34,14 @@ const App = () => {
   };
   React.useEffect(() => {
     const token = getItem(Constants.TOKEN);
-    if(token) {
+    console.log(typeof '');
+    if (typeof token === 'string') {
+      console.log(token, 'loginkken');
       setState(token);
     }
-    
-  }, [connector])
+  }, [connector]);
 
-
-
+  // console.log(tokenLogin);
   return (
     <WalletConnectProvider
       bridge="https://bridge.walletconnect.org"
@@ -48,22 +51,24 @@ const App = () => {
         icons: ['https://walletconnect.org/walletconnect-logo.png'],
         name: 'WalletConnect',
       }}
-      redirectUrl={Platform.OS === 'web' ? window.location.origin : 'yourappscheme://'}
+      redirectUrl={
+        Platform.OS === 'web' ? window.location.origin : 'yourappscheme://'
+      }
       storageOptions={{
         asyncStorage: AsyncStorage,
       }}>
-    <Provider store={store}>
+      <Provider store={store}>
         <SafeAreaView style={backgroundStyle}>
           <NavigationContainer>
             {
               // <LoginStack />
-              // <BottomTab />
-              !tokenLogin ? <LoginStack /> : <BottomTab />
+              <BottomTab />
+              // !tokenLogin ? <LoginStack /> : <BottomTab />
             }
           </NavigationContainer>
         </SafeAreaView>
-     </Provider>
-    </WalletConnectProvider >
+      </Provider>
+    </WalletConnectProvider>
   );
 };
 

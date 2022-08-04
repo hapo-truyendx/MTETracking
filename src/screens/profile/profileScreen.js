@@ -25,20 +25,28 @@ import {
   getRunHistory,
   getUserInfo,
   getUserTransaction,
-} from '../service/profile_nft';
+} from '../../service/profile_nft';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfileRequest } from '../../redux/action/profileAction';
 
 const ProfileScreen = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.profile.profile);
+  const runHistory = useSelector(state => state.profile.runHistory);
+  const transactions = useSelector(state => state.profile.transaction);
   const coins = [{title: en.stepm}, {title: 'BNB'}];
   const [typeTransaction, setTypeTransaction] = useState(0);
   const [type, setType] = useState(0);
   const [history, setHistory] = useState([]);
   const [transaction, setTransaction] = useState([]);
-  const [user, setUserProfile] = useState({});
+  // const [user, setUserProfile] = useState({});
   const getUserProfile = async () => {
-    const result = await getUserInfo();
-    if (result.status === status.success) {
-      setUserProfile(result.user);
-    }
+    // const result = await getUserInfo();
+    // if (result.status === status.success) {
+    //   setUserProfile(result.user);
+    // }
+    dispatch(getProfileRequest())
+
   };
   const getHistoryWalk = async () => {
     const result = await getRunHistory();
@@ -46,6 +54,7 @@ const ProfileScreen = () => {
     if (result.status === status.success) {
       setHistory(result.run);
     }
+    // dispatch(getProfileRequest())
   };
   const getTranstion = async () => {
     const result = await getUserTransaction();
@@ -61,6 +70,7 @@ const ProfileScreen = () => {
     }
   }, [type]);
   useEffect(() => {
+    console.log('aaa');
     getUserProfile();
   }, []);
   console.log('ssss', transaction);

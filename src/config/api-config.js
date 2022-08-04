@@ -1,5 +1,6 @@
 const ApiConfig = {
     BASE_URL: 'https://mteapi.zdemo.asia',
+    // BASE_URL: 'https://test-api.stepm.app/',
     DEMO_TOKEN: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywid2FsbGV0IjoiMHhmNGU3M2I5ZGNjM2ZjYjJjOWM1YjFhNDhmYjczMjMwOTg2ZGJiNDZiIn0.adB58UUhIzdjRwoEc3EUbfWaSKHkN0HT6jiPuxIKtto',
     DEMO_WALLET:'0xF4E73B9dcC3fcb2c9C5B1a48FB73230986DbB46B',
     LOGIN: '/api/v1/login',
