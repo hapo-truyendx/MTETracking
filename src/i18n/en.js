@@ -21,4 +21,5 @@ export const en = {
   runHistory: 'RUN HISTORY',
   transation: 'TRANSATION',
   choose: 'Choose Sneaker',
+  logout: 'Log out'
 }

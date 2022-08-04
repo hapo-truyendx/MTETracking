@@ -21,6 +21,7 @@ export const image = {
   step: require('./step.png'),
   start: require('./start.png'),
   stop: require('./stop.png'),
+  logout: require('./logout.png'),
 }
 export const menu = {
   market: require('./menu-icon-market.png'),

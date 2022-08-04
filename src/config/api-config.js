@@ -23,7 +23,7 @@ const ApiConfig = {
     // USER_REPAIR: USER_DETAIL_NFT + 'repair',
     // USER_RUN_START: USER_DETAIL_NFT + 'start',
     // USER_RUN_STOP: USER_DETAIL_NFT + 'stop',
-    USER_RUN_HISTORY: '/api/v1/user/runs',
+    USER_RUN_HISTORY: '/api/v1/user/run',
 
     //mint
     MINT:'/api/v1/mint',

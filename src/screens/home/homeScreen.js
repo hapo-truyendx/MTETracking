@@ -18,6 +18,7 @@ import {getListNft} from '../../service/marketApi';
 import {typeScreen} from '../../ultis/typeScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNftsRequest } from '../../redux/action/marketAction';
+import Header from '../header/header';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -29,49 +30,15 @@ const HomeScreen = () => {
     dispatch(getNftsRequest(filter))
   };
   useEffect(() => {
-    console.log(filter);
     getListNfts();
   }, [filter]);
+
   return (
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
       imageStyle={{resizeMode: 'cover'}}>
-      <View style={{...commonStyle.row_between, margin: 20}}>
-        <View style={{...commonStyle.row}}>
-          <Image
-            source={image.runner}
-            style={{width: 50, height: 50, marginRight: 15}}
-          />
-          <View>
-            <TextCusTom
-              children={'0x12..0K18'}
-              style={{color: palette.black, fontWeight: 'bold'}}
-            />
-            <TextCusTom
-              children={en.account}
-              style={{color: palette.black, fontSize: 15}}
-            />
-          </View>
-        </View>
-        <View>
-          <TouchableOpacity
-            style={{
-              ...commonStyle.row,
-              backgroundColor: palette.white,
-              padding: 8,
-              paddingHorizontal: 20,
-              borderRadius: 5,
-            }}
-            onPress={() => navigation.navigate('Filter')}>
-            <Image
-              source={image.filter}
-              style={{width: 36, height: 36, marginRight: 15}}
-            />
-            <TextCusTom children={en.filter} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header type ={typeScreen.market} />
       <View style={{marginHorizontal: 5, flex: 1}}>
         <FlatList
           data={listNft}

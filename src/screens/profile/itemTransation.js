@@ -7,7 +7,7 @@ import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 
 const ItemTransation = transaction => {
-  console.log('item',transaction);
+  const styleText = transaction.transaction.amount >= 0 ? styles.text : styles.text_red
   return (
     <View
       style={{
@@ -19,12 +19,12 @@ const ItemTransation = transaction => {
         borderRadius: 8,
       }}>
       <View style={{...commonStyle.row_between}}>
-        <TextCusTom children={transaction.created_at} style={styles.text} />
-        <TextCusTom children={transaction.amount} style={styles.text} />
-        <TextCusTom children={transaction.currency} style={styles.text} />
+        <TextCusTom children={transaction.transaction.created_at} style={styleText} />
+        <TextCusTom children={transaction.transaction.amount} style={styleText} />
+        <TextCusTom children={transaction.transaction.currency} style={styleText} />
         <TextCusTom
-          children={transaction.transaction_type}
-          style={styles.text}
+          children={transaction.transaction.transaction_type}
+          style={styleText}
         />
       </View>
     </View>
@@ -37,4 +37,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: palette.keppelColor,
   },
+  text_red :{
+    fontSize: 14,
+    color: palette.red,
+  }
 });

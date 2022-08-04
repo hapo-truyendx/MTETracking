@@ -1,14 +1,26 @@
 
 import { put, call } from "redux-saga/effects";
-import { getUserInfo } from "../../service/profile_nft";
+import { getUserInfo , getRunHistory, getUserTransaction} from "../../service/profile_nft";
 import { status } from "../../ultis/const";
-import { getProfileSuccess } from "../action/profileAction";
+import { getProfileSuccess, getRunHistorySuccess, getTransactionSuccess } from "../action/profileAction";
 
 export function* onGetUserInfo() {
-  console.log('vo day');
   const response = yield call(getUserInfo)
-  console.log(response, 'response');
   if(response.status === status.success) {
-    yield getProfileSuccess(response.user)
+    yield put(getProfileSuccess(response.user));
+  }
+}
+
+export function* onGetRunHistory() {
+  const response = yield call(getRunHistory);
+  if(response.status === status.success) {
+    yield put(getRunHistorySuccess(response.runs));
+  }
+}
+
+export function* onGetTransaction() {
+  const response = yield call(getUserTransaction);
+  if(response.status === status.success) {
+    yield put(getTransactionSuccess(response.transactions));
   }
 }

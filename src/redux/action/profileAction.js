@@ -13,16 +13,28 @@ export function getProfileSuccess(data) {
   }
 }
 
-export function getTransactionRequest(data) {
+export function getTransactionRequest() {
   return {
     type: types.TRANSACTION_REQUEST,
-    data,
   }
 }
 
 export function getTransactionSuccess(data) {
   return {
     type: types.TRANSACTION_SECCESS,
+    data,
+  }
+}
+
+export function getRunHistoryRequest() {
+  return {
+    type: types.RUN_HISTORY_REQUEST,
+  }
+}
+
+export function getRunHistorySuccess(data) {
+  return {
+    type: types.RUN_HISTORY_SUCCESS,
     data,
   }
 }
