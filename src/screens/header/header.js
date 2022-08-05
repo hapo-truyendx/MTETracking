@@ -9,11 +9,11 @@ import { commonStyle } from '../../ultis/const';
 import { typeScreen } from '../../ultis/typeScreen';
 
 const Header = (type) => {
-  const profile = useSelector(state => state.profile.profile)
+  const profile = useSelector(state => state.login.wallet)
   const convertString = () => {
-    const startString = profile.wallet.slice(0, 3);
-    const lengthString = profile.wallet.length;
-    const endString = profile.wallet.slice(lengthString -3, lengthString);
+    const startString = profile?.slice(0, 3);
+    const lengthString = profile?.length;
+    const endString = profile?.slice(lengthString -3, lengthString);
     return `${startString}...${endString}`
   }
   return (

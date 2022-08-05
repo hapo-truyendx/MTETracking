@@ -19,6 +19,7 @@ import {typeScreen} from '../../ultis/typeScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNftsRequest } from '../../redux/action/marketAction';
 import Header from '../header/header';
+import { getProfileRequest } from '../../redux/action/profileAction';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -32,6 +33,10 @@ const HomeScreen = () => {
   useEffect(() => {
     getListNfts();
   }, [filter]);
+
+  useEffect(() => {
+    dispatch(getProfileRequest());
+  },[])
 
   return (
     <ImageBackground

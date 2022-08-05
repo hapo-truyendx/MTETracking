@@ -8,24 +8,23 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
 import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
+import { typeScreen } from '../../ultis/typeScreen';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 const ChooseSneaker = () => {
-  const countries = [
-    {title: 'Egypt', cities: [{title: 'Cairo'}, {title: 'Alex'}]},
-    {title: 'Canada', cities: [{title: 'Toronto'}, {title: 'Quebec City'}]},
-  ];
-
+  const nfts = useSelector(state => state.mint.choose);
+  console.log('mmm',nfts);
   return (
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
       imageStyle={{resizeMode: 'cover'}}>
-      <View style={{...commonStyle.row_between}}>
+      <View style={{...commonStyle.row_between, paddingBottom: 20}}>
         <TextCusTom
           children={en.choose}
           style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
@@ -35,10 +34,10 @@ const ChooseSneaker = () => {
         </TouchableOpacity>
       </View>
       <View style={{flex: 1}}>
-        <FlatList data={[1, 2, 3,4,5]} renderItem = {() => {
-          return <ItemSneaker />
+        <FlatList data={nfts} renderItem = {(item, index) => {
+          return <ItemSneaker nfts = {item.item} type = {typeScreen.mint}/>
         }} 
-        keyExtractor={(index) => index.toString()}
+        keyExtractor={(index) => index.toString() + Math.random()}
         numColumns={2}
         style ={{flex: 1}}
         />
@@ -58,6 +57,6 @@ export default ChooseSneaker;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    padding: 5,
   },
 });
