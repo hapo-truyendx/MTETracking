@@ -44,7 +44,6 @@ const ProfileScreen = () => {
   };
   
   useEffect(() => {
-    console.log(type);
     if (type === 0) {
       dispatch(getRunHistoryRequest());
     } else {

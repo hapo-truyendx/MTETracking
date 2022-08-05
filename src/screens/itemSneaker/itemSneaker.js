@@ -1,20 +1,19 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 // import {useDispatch} from 'react-redux';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
-import { onBuyItemNfts } from '../../redux/action/marketAction';
-import { buyNft } from '../../service/marketApi';
+import {onBuyItemNfts} from '../../redux/action/marketAction';
+import {buyNft} from '../../service/marketApi';
 import {palette} from '../../ultis/color';
 import {commonStyle, status, windowWidth} from '../../ultis/const';
 import {typeScreen} from '../../ultis/typeScreen';
 
-const ItemSneaker = ({nfts, type}) => {
+const ItemSneaker = ({nfts, type, mintAction = () => {}}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // console.log(type, nfts.item);
   const typeStyle = {
     ...commonStyle.center,
     color: palette.white,
@@ -22,13 +21,7 @@ const ItemSneaker = ({nfts, type}) => {
     padding: 5,
   };
   const onBuyNft = async () => {
-    dispatch(onBuyItemNfts(nfts.id))
-    const response = await buyNft(nfts.id);
-    // if (response.status === status.success) {
-    //   // dispatch()
-    //   //dispatch home
-    //   console.log(response);
-    // }
+    dispatch(onBuyItemNfts(nfts?.id));
   };
   return (
     <View style={{margin: 5, marginBottom: 20}}>
@@ -36,13 +29,17 @@ const ItemSneaker = ({nfts, type}) => {
         style={{backgroundColor: palette.white, flex: 1, borderRadius: 8}}
         activeOpacity={0.9}
         onPress={() => {
-          navigation.navigate('Detail', {
-            id: nfts.id,
-          });
+          if (type === typeScreen.mint) {
+            mintAction(nfts?.id);
+          } else {
+            navigation.navigate('Detail', {
+              id: nfts?.id,
+            });
+          }
         }}>
         <View style={{...commonStyle.row}}>
           <TextCusTom
-            children={nfts.popularity}
+            children={nfts?.popularity}
             style={{
               ...typeStyle,
               backgroundColor: palette.tradewind,
@@ -50,7 +47,7 @@ const ItemSneaker = ({nfts, type}) => {
             }}
           />
           <TextCusTom
-            children={nfts.type}
+            children={nfts?.type}
             style={{
               ...typeStyle,
               backgroundColor: palette.texasRose,
@@ -61,27 +58,37 @@ const ItemSneaker = ({nfts, type}) => {
 
         {/* //checkk dk  */}
         <Image
-          source={{uri: nfts.image}}
+          source={{uri: nfts?.image}}
           style={{width: windowWidth * 0.5 - 15, height: 200}}
           // style={{width: 300, height: 300}}
         />
         <View style={{...commonStyle.row}}>
           <View style={{...commonStyle.row, padding: 5}}>
             <Image source={image.earn} style={{width: 20, height: 20}} />
-            <TextCusTom children={nfts.level} />
+            <TextCusTom children={nfts?.level} />
           </View>
           <View style={{...commonStyle.row, padding: 5}}>
             <Image source={image.box} style={{width: 20, height: 20}} />
-            <TextCusTom children={nfts.mint_count} />
+            <TextCusTom children={nfts?.mint_count} />
           </View>
         </View>
-        {/* <View style={{position: 'absolute', backgroundColor:'rgba(0, 0, 0, 0.5)',width: windowWidth * 0.5 - 25, height: 270, ...commonStyle.center}}>
-          <Image source={image.check} style={{width: 100, height: 100,}}/>
-        </View> */}
+        {type === typeScreen.mint && (
+          <View
+            style={{
+              position: 'absolute',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              width: windowWidth * 0.5 - 15,
+              height: 270,
+              ...commonStyle.center,
+              borderRadius: 8,
+            }}>
+            <Image source={image.check} style={{width: 100, height: 100}} />
+          </View>
+        )}
       </TouchableOpacity>
       <View style={{...commonStyle.center, paddingVertical: 5}}>
         <TextCusTom
-          children={nfts.onchain_id}
+          children={nfts?.onchain_id}
           style={{color: palette.black, fontWeight: 'bold', fontSize: 20}}
         />
       </View>
@@ -113,7 +120,7 @@ const ItemSneaker = ({nfts, type}) => {
                 borderRadius: 5,
               }}>
               <TextCusTom
-                children={nfts.price.toFixed(2)}
+                children={nfts?.price.toFixed(2)}
                 style={{color: palette.white, paddingHorizontal: 10}}
               />
               <Image source={image.bnbCoin} style={{width: 20, height: 20}} />

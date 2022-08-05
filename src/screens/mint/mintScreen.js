@@ -1,5 +1,14 @@
-import React, { Component } from 'react';
-import { View, Text,Image, ImageBackground, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import React, {Component, useEffect} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import Header from '../header/header';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
@@ -7,20 +16,45 @@ import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 import ItemSneaker from '../itemSneaker/itemSneaker';
+import {typeScreen} from '../../ultis/typeScreen';
+import { useDispatch } from 'react-redux';
+import { getMintChooseRequest } from '../../redux/action/mintAction';
+import { useNavigation } from '@react-navigation/native';
 
 const MintScreen = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const onMint = () => {
+    dispatch(getMintChooseRequest())
+    navigation.navigate('Choose');
+  }
+
   return (
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
       imageStyle={{resizeMode: 'cover'}}>
-        <Header />
-        <ScrollView >
-        <View style ={{backgroundColor: 'rgba(255, 255, 255, 0.7)', padding: 25, margin: 10, borderRadius: 8}}>
-          {/* <TouchableOpacity style={{backgroundColor: palette.white, height: windowWidth*0.8, borderRadius:windowWidth*0.8, ...commonStyle.row}} activeOpacity ={0.9}>
-            <Image source={image.plus} style ={{width: 30, height: 30, }}/>
-          </TouchableOpacity> */}
-          <FlatList 
+      <Header type={typeScreen.mint} />
+      <ScrollView>
+        <View
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+            padding: 25,
+            margin: 10,
+            borderRadius: 8,
+          }}>
+          <TouchableOpacity
+            onPress={onMint}
+            style={{
+              backgroundColor: palette.white,
+              height: windowWidth * 0.8,
+              borderRadius: windowWidth * 0.8,
+              ...commonStyle.row,
+            }}
+            activeOpacity={0.9}>
+            <Image source={image.plus} style={{width: 30, height: 30}} />
+          </TouchableOpacity>
+          {/* <FlatList 
             data={[1,2]}
             renderItem = {() =>{ 
               return (
@@ -28,26 +62,51 @@ const MintScreen = () => {
               )
             }}
             scrollEnabled ={false}
-          />
+          /> */}
           <View style={{...commonStyle.row, marginVertical: 20}}>
-            <TextCusTom children={en.mintFee} style={{color: palette.black}}/>
+            <TextCusTom children={en.mintFee} style={{color: palette.black}} />
             <TextCusTom children={' 0 STEPM'} />
           </View>
           <View style={{marginTop: 20}}>
-            <TouchableOpacity style={{...commonStyle.row, backgroundColor: palette.texasRose, padding: 10, borderRadius: 8}}>
-              <TextCusTom children={en.mint} style= {{fontWeight: '900', fontSize: 25, color: palette.white}} />
+            <TouchableOpacity
+              style={{
+                ...commonStyle.row,
+                backgroundColor: palette.texasRose,
+                padding: 10,
+                borderRadius: 8,
+              }}>
+              <TextCusTom
+                children={en.mint}
+                style={{fontWeight: '900', fontSize: 25, color: palette.white}}
+              />
             </TouchableOpacity>
           </View>
           {/* <FlatList /> */}
         </View>
-        <View style ={{backgroundColor: 'rgba(255, 255, 255, 0.7)', padding: 25, margin: 10, marginVertical: 20, borderRadius: 8}}>
-          <Image source={image.note} style={{width: 30, height: 30, position:'absolute', top: -15, left: 10}}/>
-          <TextCusTom children={en.note} style={styles.textNote}/>
+        <View
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
+            padding: 25,
+            margin: 10,
+            marginVertical: 20,
+            borderRadius: 8,
+          }}>
+          <Image
+            source={image.note}
+            style={{
+              width: 30,
+              height: 30,
+              position: 'absolute',
+              top: -15,
+              left: 10,
+            }}
+          />
+          <TextCusTom children={en.note} style={styles.textNote} />
         </View>
-        </ScrollView>
-      </ImageBackground>
-  )
-}
+      </ScrollView>
+    </ImageBackground>
+  );
+};
 
 export default MintScreen;
 const styles = StyleSheet.create({
@@ -56,6 +115,6 @@ const styles = StyleSheet.create({
   },
   textNote: {
     fontSize: 12,
-    color:palette.black
-  }
-})
+    color: palette.black,
+  },
+});
