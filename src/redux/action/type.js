@@ -42,3 +42,19 @@ export const MINT_REQUEST = 'MINT_REQUEST';
 export const MINT_SUCCESS = 'MINT_SUCCESS';
 
 export const SELECT_ITEM = 'SELECT_ITEM';
+
+//sneaker
+export const SNEAKER_LIST_REQUEST = 'SNEAKER_LIST_REQUEST';
+export const SNEAKER_LIST_SUCCESS = 'SNEAKER_LIST_SUCCESS';
+
+export const SNEAKER_DETAIL_REQUEST = 'SNEAKER_DETAIL_REQUEST';
+export const SNEAKER_DETAIL_SUCCESS = 'SNEAKER_DETAIL_SUCCESS';
+
+export const LEVELUP = 'LEVEL_UP';
+export const ATTRUP = 'ATTRUP';
+export const REPAIR = 'REPAIR';
+
+export const START = 'START';
+export const STOP = 'STOP';
+export const STOP_REQUEST = 'STOP_REQUEST';
+export const STOP_SUCCESS = 'STOP_SUCCESS';
