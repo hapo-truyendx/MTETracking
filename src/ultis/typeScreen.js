@@ -3,4 +3,5 @@ export const typeScreen = {
   sneaker: 'sneaker',
   mint: 'mint',
   profile: 'profile',
+  isBig: 'isBig'
 };

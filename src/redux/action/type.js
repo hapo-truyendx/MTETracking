@@ -40,3 +40,5 @@ export const MINT_FEE_SUCCESS = 'MINT_FEE_SUCCESS';
 
 export const MINT_REQUEST = 'MINT_REQUEST';
 export const MINT_SUCCESS = 'MINT_SUCCESS';
+
+export const SELECT_ITEM = 'SELECT_ITEM';

@@ -4,6 +4,7 @@ const initialState = {
   choose: [],
   fee: 0,
   new_nfts: {},
+  selectNfts: [],
 };
 
 const mintReducer = (state = initialState, action) => {
@@ -14,7 +15,6 @@ const mintReducer = (state = initialState, action) => {
       };
     }
     case types.MINNT_CHOOSE_SUCCESS: {
-      console.log(action.data);
       return {
         ...state,
         choose: action.data,
@@ -26,6 +26,7 @@ const mintReducer = (state = initialState, action) => {
       };
     }
     case types.MINT_FEE_SUCCESS: {
+      console.log(action.data, 'action');
       return {
         ...state,
         fee: action.data,
@@ -37,10 +38,17 @@ const mintReducer = (state = initialState, action) => {
       };
     }
     case types.MINT_SUCCESS: {
+      
       return {
         ...state,
         new_nfts: {...action.data},
       };
+    }
+    case types.SELECT_ITEM: {
+      return {
+        ...state,
+        selectNfts: action.data
+      }
     }
 
     default:
