@@ -17,14 +17,24 @@ import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 import {ProgressBar, MD3Colors} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-const DetailSneaker = () => {
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetailRequest } from '../../redux/action/sneakerAction';
+import { convertPopularity, convertType } from '../../ultis/convertType';
+const DetailSneaker = ({route}) => {
   const navigation = useNavigation();
+  const dispath = useDispatch();
+  const detailNft = useSelector(state => state.sneaker.detailSneaker);
   const typeStyle = {
     ...commonStyle.center,
     color: palette.white,
     fontSize: 15,
     padding: 5,
   };
+  
+  useEffect(() => {
+    dispath(getDetailRequest(route.params.id))
+  },[])
 
   const Progress = () => {
     return (
@@ -77,7 +87,7 @@ const DetailSneaker = () => {
           activeOpacity={0.9}>
           <View style={{...commonStyle.row}}>
             <TextCusTom
-              children={'Common'}
+              children={convertPopularity(detailNft?.popularity)}
               style={{
                 ...typeStyle,
                 backgroundColor: palette.tradewind,
@@ -85,7 +95,7 @@ const DetailSneaker = () => {
               }}
             />
             <TextCusTom
-              children={'Walker'}
+              children={convertType(detailNft?.type)}
               style={{
                 ...typeStyle,
                 backgroundColor: palette.texasRose,
@@ -94,7 +104,7 @@ const DetailSneaker = () => {
             />
           </View>
           <Image
-            source={image.itemSneaker}
+            source={{uri: detailNft?.image}}
             style={{width: windowWidth - 25, height: 200, flex: 1}}
           />
         </TouchableOpacity>

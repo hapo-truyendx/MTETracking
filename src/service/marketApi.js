@@ -6,7 +6,8 @@ export function getListNft(data) {
 }
 
 export function getDetailNft(id) {
-  return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.LIST_NFT}/${id}`);
+  console.log(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}/${id}`);
+  return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}/${id}`);
 }
 
 export function getSellNft(id, price) {

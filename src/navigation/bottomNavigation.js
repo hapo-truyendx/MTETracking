@@ -10,14 +10,23 @@ import MintStack from './stack/mintStack';
 import SneakerStack from './stack/sneakerStack';
 import ProfileStack from './stack/profileStack';
 
+const bottomNavigatorConfigs = {
+  initialRouteName: "Home",
+  screenOptions: {
+      tabBarStyle: { height: 300 },
+  },
+};
+
 const Tab = createBottomTabNavigator();
 
 const BottomTab = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
+      screenOptions={
+        {
         tabBarShowLabel: false,
         headerShown: false,
+        tabBarStyle : {height: 80}
         // style: {height: 100},
       }}>
       <Tab.Screen
@@ -26,7 +35,7 @@ const BottomTab = () => {
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <View style={{...commonStyle.center, marginTop: 10}}>
+              <View style={{...commonStyle.center}}>
                 <Image
                   source={menu.market}
                   style={
@@ -52,7 +61,7 @@ const BottomTab = () => {
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <View style={{...commonStyle.center, marginTop: 10}}>
+              <View style={{...commonStyle.center}}>
                 <Image
                   source={menu.sneaker}
                   style={
@@ -78,7 +87,7 @@ const BottomTab = () => {
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <View style={{...commonStyle.center, marginTop: 10}}>
+              <View style={{...commonStyle.center}}>
                 <Image
                   source={menu.mint}
                   style={
@@ -104,7 +113,7 @@ const BottomTab = () => {
         options={{
           tabBarIcon: ({focused}) => {
             return (
-              <View style={{...commonStyle.center, marginTop: 10}}>
+              <View style={{...commonStyle.center}}>
                 <Image
                   source={menu.profile}
                   style={

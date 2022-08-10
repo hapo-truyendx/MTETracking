@@ -10,7 +10,7 @@ export function getUserTransaction() {
 }
 
 export function getUserListNft() {
-    return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}`)
+    return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}`,  {"status": "0"})
 }
 
 export function getUserDetailNft() {

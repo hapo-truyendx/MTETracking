@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -7,29 +7,48 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
 import {en} from '../../i18n/en';
+import { getListSneakerRequest } from '../../redux/action/sneakerAction';
 import {palette} from '../../ultis/color';
 import {commonStyle} from '../../ultis/const';
+import { typeScreen } from '../../ultis/typeScreen';
 import Header from '../header/header';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 
 const SneakerScreen = () => {
+  const dispatch = useDispatch();
+  const nfts = useSelector(state => state.sneaker.listSneaker)
   const [indexTab, setIndexTab] = useState(0);
+  console.log(nfts, 'nfts');
+
+  useEffect(()=>{
+    if(indexTab === 0) {
+      dispatch(getListSneakerRequest());
+    }
+    else if(indexTab === 1){
+
+    }
+    else {
+
+    }
+    
+  }, [indexTab])
   return (
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
       imageStyle={{resizeMode: 'cover'}}>
-      <Header />
+      <Header type ={typeScreen.sneaker}/>
       <View style={{marginHorizontal: 5, flex: 1}}>
         <FlatList
-          data={[1, 2, 3, 4, 5]}
-          renderItem={() => {
-            return <ItemSneaker />;
+          data={nfts}
+          renderItem={(item , index) => {
+            return <ItemSneaker nfts={item.item} type ={typeScreen.sneaker} />;
           }}
-          keyExtractor={index => index.toString()}
+          keyExtractor={index => index.toString() + Math.random()}
           numColumns={2}
           style={{flex: 1}}
         />
