@@ -8,7 +8,6 @@ const initialState = {
 const sneakerReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SNEAKER_LIST_REQUEST: {
-      console.log(action, 'action');
       return {
         ...state,
       }

@@ -24,7 +24,6 @@ const Header = (type) => {
   useEffect(()=> {
     dispatch(getProfileRequest())
   }, [])
-  console.log('prifile',profile);
   return (
     <View style={{ ...commonStyle.row_between, margin: 13 }}>
       <TouchableOpacity style={{ ...commonStyle.row }} onPress = {() => navigation.navigate('Profile')}>

@@ -3,6 +3,13 @@ import {Dimensions} from 'react-native';
 export const windowWidth = Dimensions.get('window').width;
 export const windowHeight = Dimensions.get('window').height;
 
+export const configDetail = {
+    maxDurability : 120,
+ maxMint : 6,
+ maxLevel : 30,
+ maxProgressBar : 100,
+}
+
 export const commonStyle = {
   row: {
     flexDirection: 'row',

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -10,18 +10,18 @@ import {
   ScrollView,
   TextInput,
 } from 'react-native';
-import {image} from '../../assets';
-import {TextCusTom} from '../../components/textCustom';
-import {en} from '../../i18n/en';
-import {palette} from '../../ultis/color';
-import {commonStyle, windowWidth} from '../../ultis/const';
-import {ProgressBar, MD3Colors} from 'react-native-paper';
+import { image } from '../../assets';
+import { TextCusTom } from '../../components/textCustom';
+import { en } from '../../i18n/en';
+import { palette } from '../../ultis/color';
+import { commonStyle, configDetail, windowWidth } from '../../ultis/const';
+import { ProgressBar, MD3Colors } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailRequest } from '../../redux/action/sneakerAction';
 import { convertPopularity, convertType } from '../../ultis/convertType';
-const DetailSneaker = ({route}) => {
+const DetailSneaker = ({ route }) => {
   const navigation = useNavigation();
   const dispath = useDispatch();
   const detailNft = useSelector(state => state.sneaker.detailSneaker);
@@ -31,15 +31,16 @@ const DetailSneaker = ({route}) => {
     fontSize: 15,
     padding: 5,
   };
-  
+
   useEffect(() => {
     dispath(getDetailRequest(route.params.id))
-  },[])
+  }, [])
+  console.log(detailNft);
 
   const Progress = () => {
     return (
-      <View style={{...commonStyle.row, marginVertical: 10}}>
-        <View style={{flex: 4, height: 50}}>
+      <View style={{ ...commonStyle.row, marginVertical: 10 }}>
+        <View style={{ flex: 4, height: 50 }}>
           <View
             style={{
               width: '60%',
@@ -53,7 +54,7 @@ const DetailSneaker = ({route}) => {
             <TextCusTom children={'abc'} />
           </View>
         </View>
-        <View style={{...commonStyle.row, flex: 1}}>
+        <View style={{ ...commonStyle.row, flex: 1 }}>
           <TextCusTom children={'60'} />
           <View>
             <TextCusTom children={'+1'} />
@@ -66,14 +67,14 @@ const DetailSneaker = ({route}) => {
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
-      imageStyle={{resizeMode: 'cover'}}>
-      <View style={{...commonStyle.row_between}}>
+      imageStyle={{ resizeMode: 'cover' }}>
+      <View style={{ ...commonStyle.row_between }}>
         <TextCusTom
           children={en.choose}
-          style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
+          style={{ fontSize: 25, fontWeight: 'bold', color: palette.white }}
         />
-        <TouchableOpacity onPress={()=>{navigation.goBack()}}>
-          <Image source={image.close} style={{width: 36, height: 36}} />
+        <TouchableOpacity onPress={() => { navigation.goBack() }}>
+          <Image source={image.close} style={{ width: 36, height: 36 }} />
         </TouchableOpacity>
       </View>
       <ScrollView>
@@ -85,7 +86,7 @@ const DetailSneaker = ({route}) => {
             borderRadius: 8,
           }}
           activeOpacity={0.9}>
-          <View style={{...commonStyle.row}}>
+          <View style={{ ...commonStyle.row }}>
             <TextCusTom
               children={convertPopularity(detailNft?.popularity)}
               style={{
@@ -104,21 +105,21 @@ const DetailSneaker = ({route}) => {
             />
           </View>
           <Image
-            source={{uri: detailNft?.image}}
-            style={{width: windowWidth - 25, height: 200, flex: 1}}
+            source={{ uri: detailNft?.image }}
+            style={{ width: windowWidth - 25, height: 200, flex: 1 }}
           />
         </TouchableOpacity>
         <View>
-          <TextCusTom children={'Level 10/30'} />
+          <TextCusTom children={`Level ${detailNft?.level ?? 0} /${detailNft?.level_max}`} style={styles.text} />
           <ProgressBar
-            progress={2}
-            color={palette.red}
-            style={{padding: 10, borderRadius: 10}}
+            progress={detailNft?.level / detailNft?.level_max}
+            // color={palette.red}
+            style={{ padding: 10, borderRadius: 10 }}
           />
-          <View style={{...commonStyle.row_between}}>
+          <View style={{ ...commonStyle.row_between }}>
             <TextCusTom
-              children={'Up to level 11 with fee: 7.5 STEPM'}
-              style={{fontSize: 14}}
+              children={`Up to next level with fee: ${detailNft?.up_level_fee} STEPM`}
+              style={{ ...styles.text, fontSize: 13 }}
             />
             <TouchableOpacity
               style={{
@@ -130,23 +131,23 @@ const DetailSneaker = ({route}) => {
               }}>
               <Image
                 source={image.filter}
-                style={{width: 36, height: 36, marginRight: 15}}
+                style={{ width: 36, height: 36, marginRight: 15 }}
               />
               <TextCusTom children={en.filter} />
             </TouchableOpacity>
           </View>
         </View>
         <View>
-          <TextCusTom children={'Level 10/30'} />
+          <TextCusTom children={`Durability ${detailNft?.durability ?? 0}/${configDetail.maxDurability}`} style={styles.text} />
           <ProgressBar
             progress={2}
             color={palette.red}
-            style={{padding: 10, borderRadius: 10}}
+            style={{ padding: 10, borderRadius: 10 }}
           />
-          <View style={{...commonStyle.row_between}}>
+          <View style={{ ...commonStyle.row_between }}>
             <TextCusTom
-              children={'Up to level 11 with fee: 7.5 STEPM'}
-              style={{fontSize: 14}}
+              children={`Repair with fee: ${detailNft?.repair_fee} STEPM`}
+              style={{ ...styles.text, fontSize: 13 }}
             />
             <TouchableOpacity
               style={{
@@ -158,24 +159,24 @@ const DetailSneaker = ({route}) => {
               }}>
               <Image
                 source={image.filter}
-                style={{width: 36, height: 36, marginRight: 15}}
+                style={{ width: 36, height: 36, marginRight: 15 }}
               />
               <TextCusTom children={en.filter} />
             </TouchableOpacity>
           </View>
         </View>
         <View>
-          <TextCusTom children={'Level 10/30'} />
+          <TextCusTom children={`Mint ${detailNft?.mint_count}/${configDetail.maxMint}`} style={styles.text} />
           <ProgressBar
             progress={2}
             color={palette.red}
-            style={{padding: 10, borderRadius: 10}}
+            style={{ padding: 10, borderRadius: 10 }}
           />
         </View>
-        <View style={{...commonStyle.row_between}}>
+        <View style={{ ...commonStyle.row_between }}>
           <TextCusTom
             children={'Attributes'}
-            style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
+            style={{ fontSize: 25, fontWeight: 'bold', color: palette.white }}
           />
           <TouchableOpacity
             style={{
@@ -202,7 +203,7 @@ const DetailSneaker = ({route}) => {
           <TextInput
             value={''}
             onChangeText={value => value}
-            style={{flex: 2}}
+            style={{ flex: 2 }}
           />
 
           <TouchableOpacity
@@ -215,7 +216,7 @@ const DetailSneaker = ({route}) => {
             }}>
             <TextCusTom
               children={'SELL'}
-              style={{color: palette.white, fontSize: 14}}
+              style={{ color: palette.white, fontSize: 14 }}
             />
           </TouchableOpacity>
         </View>
@@ -230,7 +231,7 @@ const DetailSneaker = ({route}) => {
           }}>
           <TextCusTom
             children={en.choose}
-            style={{color: palette.white, fontWeight: 'bold', fontSize: 25}}
+            style={{ color: palette.white, fontWeight: 'bold', fontSize: 25 }}
           />
         </TouchableOpacity>
       </View>
@@ -244,4 +245,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
   },
+  text: {
+    color: palette.black,
+    fontSize: 16,
+    paddingVertical: 5
+  }
 });

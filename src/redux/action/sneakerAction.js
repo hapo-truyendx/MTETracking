@@ -8,7 +8,6 @@ export function getListSneakerRequest() {
 }
 
 export function getListSneakerSuccess(data) {
-  console.log(data, 'success');
   return {
     type: types.SNEAKER_LIST_SUCCESS,
     data

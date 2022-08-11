@@ -18,9 +18,7 @@ export function* onGetFee(data) {
 }
 
 export function* onMint(data) {
-  console.log(data, 'action');
   const mintResponse = yield call(mintNft, data.data[0], data.data[1])
-  console.log(mintResponse, 'respone');
   if(mintResponse.status === status.success) {
     yield put(getMintFeeSuccess(0))
     yield put(onSelectItem([]))

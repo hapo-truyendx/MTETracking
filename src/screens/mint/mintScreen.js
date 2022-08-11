@@ -93,7 +93,6 @@ const MintScreen = () => {
           <View style={{marginTop: 20}}>
             <TouchableOpacity
               onPress={() => {
-                console.log('s');
                 dispatch(onMintRequest(selected));
               }}
               style={{

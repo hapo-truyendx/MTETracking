@@ -21,7 +21,6 @@ export function getMintFeeRequest(data) {
 }
 
 export function getMintFeeSuccess (data) {
-  console.log(data, 'data');
   return {
     type: types.MINT_FEE_SUCCESS,
     data,
@@ -29,7 +28,6 @@ export function getMintFeeSuccess (data) {
 }
 
 export function onMintRequest(data) {
-  console.log(data, 'data');
   return  {
     type: types.MINT_REQUEST,
     data,

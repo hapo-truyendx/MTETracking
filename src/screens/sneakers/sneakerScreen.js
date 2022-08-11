@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import {
   View,
   Image,
@@ -7,16 +7,16 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Web3 from 'web3';
-import {image} from '../../assets';
-import {TextCusTom} from '../../components/textCustom';
+import { image } from '../../assets';
+import { TextCusTom } from '../../components/textCustom';
 import ApiConfig from '../../config/api-config';
-import {en} from '../../i18n/en';
-import {getListSneakerRequest} from '../../redux/action/sneakerAction';
-import {palette} from '../../ultis/color';
-import {abiApp, commonStyle} from '../../ultis/const';
-import {typeScreen} from '../../ultis/typeScreen';
+import { en } from '../../i18n/en';
+import { getListSneakerRequest } from '../../redux/action/sneakerAction';
+import { palette } from '../../ultis/color';
+import { abiApp, abiNft, commonStyle } from '../../ultis/const';
+import { typeScreen } from '../../ultis/typeScreen';
 import Header from '../header/header';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 
@@ -25,12 +25,30 @@ const SneakerScreen = () => {
   const nfts = useSelector(state => state.sneaker.listSneaker);
   const [indexTab, setIndexTab] = useState(0);
 
-  const getMetamask = async() => {
+  const getMetamask = async () => {
     const web3 = new Web3(ApiConfig.rpcUrl);
-    const token = new web3.eth.Contract(abiApp,ApiConfig.DEMO_WALLET);
-    await token.function('getMyNFTs')
+    const token = new web3.eth.Contract(abiApp, ApiConfig.addressApp);
+    // console.log(token._jsonInterface);
+    const myNfts = token._jsonInterface.find((item) => item.name === 'getMyNFTs');
+    // console.log(myNfts);
+    const contractList = await token.methods.getMyNFTs.call({
+      from: ApiConfig.DEMO_WALLET,
+      gas: 2500000
+    });
+
+    // console.log(contractList);
+
     // console.log('token',);
-    // const aaa = await web3.c
+    const tokenNft = new web3.eth.Contract(abiNft, ApiConfig.addressNft);
+    const myNft = tokenNft._jsonInterface.find((item) =>
+      item.name === "get"
+    );
+    console.log(myNft);
+    // console.log(tokenNft._jsonInterface);
+    const contractShoes = tokenNft.methods.get.call({
+      from: ApiConfig.DEMO_WALLET,
+      
+    })
   };
 
   useEffect(() => {
@@ -45,9 +63,9 @@ const SneakerScreen = () => {
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
-      imageStyle={{resizeMode: 'cover'}}>
+      imageStyle={{ resizeMode: 'cover' }}>
       <Header type={typeScreen.sneaker} />
-      <View style={{marginHorizontal: 5, flex: 1}}>
+      <View style={{ marginHorizontal: 5, flex: 1 }}>
         <FlatList
           data={nfts}
           renderItem={(item, index) => {
@@ -55,10 +73,10 @@ const SneakerScreen = () => {
           }}
           keyExtractor={index => index.toString() + Math.random()}
           numColumns={2}
-          style={{flex: 1}}
+          style={{ flex: 1 }}
         />
       </View>
-      <View style={{...commonStyle.row, padding: 10}}>
+      <View style={{ ...commonStyle.row, padding: 10 }}>
         <TouchableOpacity
           onPress={() => setIndexTab(0)}
           style={{

@@ -1,7 +1,6 @@
 import * as types from './type';
 
 export function getNftsRequest(data) {
-    console.log(data);
     return {
         type: types.LIST_NFTS_REQUEST,
         data,
