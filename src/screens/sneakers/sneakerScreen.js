@@ -7,46 +7,51 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import Web3 from 'web3';
 import {image} from '../../assets';
 import {TextCusTom} from '../../components/textCustom';
+import ApiConfig from '../../config/api-config';
 import {en} from '../../i18n/en';
-import { getListSneakerRequest } from '../../redux/action/sneakerAction';
+import {getListSneakerRequest} from '../../redux/action/sneakerAction';
 import {palette} from '../../ultis/color';
-import {commonStyle} from '../../ultis/const';
-import { typeScreen } from '../../ultis/typeScreen';
+import {abiApp, commonStyle} from '../../ultis/const';
+import {typeScreen} from '../../ultis/typeScreen';
 import Header from '../header/header';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 
 const SneakerScreen = () => {
   const dispatch = useDispatch();
-  const nfts = useSelector(state => state.sneaker.listSneaker)
+  const nfts = useSelector(state => state.sneaker.listSneaker);
   const [indexTab, setIndexTab] = useState(0);
-  console.log(nfts, 'nfts');
 
-  useEffect(()=>{
-    if(indexTab === 0) {
+  const getMetamask = async() => {
+    const web3 = new Web3(ApiConfig.rpcUrl);
+    const token = new web3.eth.Contract(abiApp,ApiConfig.DEMO_WALLET);
+    await token.function('getMyNFTs')
+    // console.log('token',);
+    // const aaa = await web3.c
+  };
+
+  useEffect(() => {
+    if (indexTab === 0) {
       dispatch(getListSneakerRequest());
+    } else if (indexTab === 1) {
+      getMetamask();
+    } else {
     }
-    else if(indexTab === 1){
-
-    }
-    else {
-
-    }
-    
-  }, [indexTab])
+  }, [indexTab]);
   return (
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
       imageStyle={{resizeMode: 'cover'}}>
-      <Header type ={typeScreen.sneaker}/>
+      <Header type={typeScreen.sneaker} />
       <View style={{marginHorizontal: 5, flex: 1}}>
         <FlatList
           data={nfts}
-          renderItem={(item , index) => {
-            return <ItemSneaker nfts={item.item} type ={typeScreen.sneaker} />;
+          renderItem={(item, index) => {
+            return <ItemSneaker nfts={item.item} type={typeScreen.sneaker} />;
           }}
           keyExtractor={index => index.toString() + Math.random()}
           numColumns={2}
