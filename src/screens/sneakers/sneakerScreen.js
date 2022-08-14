@@ -27,27 +27,28 @@ const SneakerScreen = () => {
 
   const getMetamask = async () => {
     const web3 = new Web3(ApiConfig.rpcUrl);
-    const token = new web3.eth.Contract(abiApp, ApiConfig.addressApp);
+
     // console.log(token._jsonInterface);
-    const myNfts = token._jsonInterface.find((item) => item.name === 'getMyNFTs');
+    // const myNfts = token._jsonInterface.find((item) => item.name === 'getMyNFTs');
     // console.log(myNfts);
-    const contractList = await token.methods.getMyNFTs.call({
+    const token = new web3.eth.Contract(abiApp, ApiConfig.addressApp);
+    const contractList = await token.methods.getMyNFTs().call({
       from: ApiConfig.DEMO_WALLET,
-      gas: 2500000
+      gas: 100000
+    }, (err, result) => {
+      console.log('aaaa', result, err);
     });
 
-    // console.log(contractList);
-
-    // console.log('token',);
     const tokenNft = new web3.eth.Contract(abiNft, ApiConfig.addressNft);
     const myNft = tokenNft._jsonInterface.find((item) =>
       item.name === "get"
     );
-    console.log(myNft);
+    // console.log(myNft);
     // console.log(tokenNft._jsonInterface);
-    const contractShoes = tokenNft.methods.get.call({
+    const contractShoes = tokenNft.methods.get(147).call({
       from: ApiConfig.DEMO_WALLET,
-      
+    }, (err, result) => {
+      console.log('item', result, err);
     })
   };
 

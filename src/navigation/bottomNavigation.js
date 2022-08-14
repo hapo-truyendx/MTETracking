@@ -43,7 +43,7 @@ const BottomTab = () => {
                   }
                 />
                 <TextCusTom
-                  children={'Home'}
+                  children={'Market'}
                   style={
                     focused
                       ? {fontSize: 18, fontWeight: 'bold'}

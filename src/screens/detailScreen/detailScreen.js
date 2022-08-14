@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailRequest } from '../../redux/action/sneakerAction';
 import { convertPopularity, convertType } from '../../ultis/convertType';
-const DetailSneaker = ({ route }) => {
+const DetailSneaker = ({ route, }) => {
   const navigation = useNavigation();
   const dispath = useDispatch();
   const detailNft = useSelector(state => state.sneaker.detailSneaker);
