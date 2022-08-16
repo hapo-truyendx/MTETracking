@@ -26,7 +26,6 @@ const mintReducer = (state = initialState, action) => {
       };
     }
     case types.MINT_FEE_SUCCESS: {
-      console.log(action.data, 'action');
       return {
         ...state,
         fee: action.data,

@@ -6,7 +6,6 @@ export function getListNft(data) {
 }
 
 export function getDetailNft(id) {
-  console.log(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}/${id}`);
   return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}/${id}`);
 }
 

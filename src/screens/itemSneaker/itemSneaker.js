@@ -42,6 +42,7 @@ const ItemSneaker = ({nfts, type, mintAction = () => {}}) => {
       );
     }
   }, [selectItem]);
+  console.log(nfts?.image, "image");
   return (
     <View style={{margin: 5, marginBottom: 20}}>
       <TouchableOpacity

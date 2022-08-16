@@ -33,7 +33,6 @@ const MintScreen = () => {
   const selected = useSelector(state => state.mint.selectNfts);
   const nfts = useSelector(state => state.mint.choose);
   const mintFee = useSelector(state => state.mint.fee);
-  console.log(selected.length, selected);
 
   const onMint = () => {
     dispatch(getMintChooseRequest());

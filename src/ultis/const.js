@@ -1,13 +1,20 @@
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 
 export const windowWidth = Dimensions.get('window').width;
 export const windowHeight = Dimensions.get('window').height;
 
+export const getAssetImage = ({ nftType, popularity
+}) => {
+  console.log(nftType, popularity);
+  const assetImagePath = 'https://test-api.stepm.app/assets/images';
+  return `${assetImagePath}/${nftType}-${popularity}.png`;
+}
+
 export const configDetail = {
-    maxDurability : 120,
- maxMint : 6,
- maxLevel : 30,
- maxProgressBar : 100,
+  maxDurability: 120,
+  maxMint: 6,
+  maxLevel: 30,
+  maxProgressBar: 100,
 }
 
 export const commonStyle = {
@@ -214,7 +221,7 @@ export const abiNft = [
         name: 'from',
         type: 'address',
       },
-      {indexed: true, internalType: 'address', name: 'to', type: 'address'},
+      { indexed: true, internalType: 'address', name: 'to', type: 'address' },
       {
         indexed: true,
         internalType: 'uint256',
@@ -228,7 +235,7 @@ export const abiNft = [
   {
     inputs: [],
     name: 'DEFAULT_ADMIN_ROLE',
-    outputs: [{internalType: 'bytes32', name: '', type: 'bytes32'}],
+    outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -236,15 +243,15 @@ export const abiNft = [
   {
     inputs: [],
     name: 'GAME_ADMIN',
-    outputs: [{internalType: 'bytes32', name: '', type: 'bytes32'}],
+    outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'to', type: 'address'},
-      {internalType: 'uint256', name: 'tokenId', type: 'uint256'},
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'tokenId', type: 'uint256' },
     ],
     name: 'approve',
     outputs: [],
@@ -252,9 +259,9 @@ export const abiNft = [
     type: 'function',
   },
   {
-    inputs: [{internalType: 'address', name: 'owner', type: 'address'}],
+    inputs: [{ internalType: 'address', name: 'owner', type: 'address' }],
     name: 'balanceOf',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -262,50 +269,50 @@ export const abiNft = [
   {
     inputs: [],
     name: 'baseURI',
-    outputs: [{internalType: 'string', name: '', type: 'string'}],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'tokenId', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'tokenId', type: 'uint256' }],
     name: 'getApproved',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'bytes32', name: 'role', type: 'bytes32'}],
+    inputs: [{ internalType: 'bytes32', name: 'role', type: 'bytes32' }],
     name: 'getRoleAdmin',
-    outputs: [{internalType: 'bytes32', name: '', type: 'bytes32'}],
+    outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'uint256', name: 'index', type: 'uint256'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'uint256', name: 'index', type: 'uint256' },
     ],
     name: 'getRoleMember',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'bytes32', name: 'role', type: 'bytes32'}],
+    inputs: [{ internalType: 'bytes32', name: 'role', type: 'bytes32' }],
     name: 'getRoleMemberCount',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'grantRole',
     outputs: [],
@@ -314,22 +321,22 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'hasRole',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'owner', type: 'address'},
-      {internalType: 'address', name: 'operator', type: 'address'},
+      { internalType: 'address', name: 'owner', type: 'address' },
+      { internalType: 'address', name: 'operator', type: 'address' },
     ],
     name: 'isApprovedForAll',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -337,23 +344,23 @@ export const abiNft = [
   {
     inputs: [],
     name: 'name',
-    outputs: [{internalType: 'string', name: '', type: 'string'}],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'tokenId', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'tokenId', type: 'uint256' }],
     name: 'ownerOf',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'renounceRole',
     outputs: [],
@@ -362,8 +369,8 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'revokeRole',
     outputs: [],
@@ -372,9 +379,9 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'from', type: 'address'},
-      {internalType: 'address', name: 'to', type: 'address'},
-      {internalType: 'uint256', name: 'tokenId', type: 'uint256'},
+      { internalType: 'address', name: 'from', type: 'address' },
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'tokenId', type: 'uint256' },
     ],
     name: 'safeTransferFrom',
     outputs: [],
@@ -383,10 +390,10 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'from', type: 'address'},
-      {internalType: 'address', name: 'to', type: 'address'},
-      {internalType: 'uint256', name: 'tokenId', type: 'uint256'},
-      {internalType: 'bytes', name: '_data', type: 'bytes'},
+      { internalType: 'address', name: 'from', type: 'address' },
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'tokenId', type: 'uint256' },
+      { internalType: 'bytes', name: '_data', type: 'bytes' },
     ],
     name: 'safeTransferFrom',
     outputs: [],
@@ -395,8 +402,8 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'operator', type: 'address'},
-      {internalType: 'bool', name: 'approved', type: 'bool'},
+      { internalType: 'address', name: 'operator', type: 'address' },
+      { internalType: 'bool', name: 'approved', type: 'bool' },
     ],
     name: 'setApprovalForAll',
     outputs: [],
@@ -404,9 +411,9 @@ export const abiNft = [
     type: 'function',
   },
   {
-    inputs: [{internalType: 'bytes4', name: 'interfaceId', type: 'bytes4'}],
+    inputs: [{ internalType: 'bytes4', name: 'interfaceId', type: 'bytes4' }],
     name: 'supportsInterface',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -414,34 +421,34 @@ export const abiNft = [
   {
     inputs: [],
     name: 'symbol',
-    outputs: [{internalType: 'string', name: '', type: 'string'}],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'index', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'index', type: 'uint256' }],
     name: 'tokenByIndex',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'owner', type: 'address'},
-      {internalType: 'uint256', name: 'index', type: 'uint256'},
+      { internalType: 'address', name: 'owner', type: 'address' },
+      { internalType: 'uint256', name: 'index', type: 'uint256' },
     ],
     name: 'tokenOfOwnerByIndex',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'tokenId', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'tokenId', type: 'uint256' }],
     name: 'tokenURI',
-    outputs: [{internalType: 'string', name: '', type: 'string'}],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -449,16 +456,16 @@ export const abiNft = [
   {
     inputs: [],
     name: 'totalSupply',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'from', type: 'address'},
-      {internalType: 'address', name: 'to', type: 'address'},
-      {internalType: 'uint256', name: 'tokenId', type: 'uint256'},
+      { internalType: 'address', name: 'from', type: 'address' },
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'tokenId', type: 'uint256' },
     ],
     name: 'transferFrom',
     outputs: [],
@@ -473,16 +480,16 @@ export const abiNft = [
     type: 'function',
   },
   {
-    inputs: [{internalType: 'uint256', name: 'id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
     name: 'get',
     outputs: [
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'bool', name: '', type: 'bool'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'bool', name: '', type: 'bool' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
     ],
     stateMutability: 'view',
     type: 'function',
@@ -490,14 +497,14 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'uint8', name: 'hs_efficiency', type: 'uint8'},
-      {internalType: 'uint8', name: 'hs_durability', type: 'uint8'},
-      {internalType: 'uint8', name: 'hs_luck', type: 'uint8'},
-      {internalType: 'uint8', name: 'hs_comfort', type: 'uint8'},
-      {internalType: 'uint8', name: 'popularity', type: 'uint8'},
-      {internalType: 'uint8', name: 'nft_type', type: 'uint8'},
-      {internalType: 'uint256', name: 'parent_id', type: 'uint256'},
-      {internalType: 'uint256', name: 'mother_id', type: 'uint256'},
+      { internalType: 'uint8', name: 'hs_efficiency', type: 'uint8' },
+      { internalType: 'uint8', name: 'hs_durability', type: 'uint8' },
+      { internalType: 'uint8', name: 'hs_luck', type: 'uint8' },
+      { internalType: 'uint8', name: 'hs_comfort', type: 'uint8' },
+      { internalType: 'uint8', name: 'popularity', type: 'uint8' },
+      { internalType: 'uint8', name: 'nft_type', type: 'uint8' },
+      { internalType: 'uint256', name: 'parent_id', type: 'uint256' },
+      { internalType: 'uint256', name: 'mother_id', type: 'uint256' },
     ],
     name: 'sme',
     outputs: [],
@@ -506,8 +513,8 @@ export const abiNft = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'minter', type: 'address'},
-      {internalType: 'uint256', name: 'seed', type: 'uint256'},
+      { internalType: 'address', name: 'minter', type: 'address' },
+      { internalType: 'uint256', name: 'seed', type: 'uint256' },
     ],
     name: 'mint',
     outputs: [],
@@ -517,38 +524,38 @@ export const abiNft = [
   {
     inputs: [],
     name: 'getLastID',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
     name: 'getOpenStatus',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
     name: 'openBox',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [{internalType: 'uint256', name: 'id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
     name: 'isOpenItem',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'id', type: 'uint256' }],
     name: 'getCreatedAt',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -664,7 +671,7 @@ export const abiApp = [
   {
     inputs: [],
     name: 'DEFAULT_ADMIN_ROLE',
-    outputs: [{internalType: 'bytes32', name: '', type: 'bytes32'}],
+    outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -672,42 +679,42 @@ export const abiApp = [
   {
     inputs: [],
     name: 'GAME_ADMIN',
-    outputs: [{internalType: 'bytes32', name: '', type: 'bytes32'}],
+    outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'bytes32', name: 'role', type: 'bytes32'}],
+    inputs: [{ internalType: 'bytes32', name: 'role', type: 'bytes32' }],
     name: 'getRoleAdmin',
-    outputs: [{internalType: 'bytes32', name: '', type: 'bytes32'}],
+    outputs: [{ internalType: 'bytes32', name: '', type: 'bytes32' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'uint256', name: 'index', type: 'uint256'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'uint256', name: 'index', type: 'uint256' },
     ],
     name: 'getRoleMember',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'bytes32', name: 'role', type: 'bytes32'}],
+    inputs: [{ internalType: 'bytes32', name: 'role', type: 'bytes32' }],
     name: 'getRoleMemberCount',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'grantRole',
     outputs: [],
@@ -716,27 +723,27 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'hasRole',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     name: 'nft_list',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'renounceRole',
     outputs: [],
@@ -745,8 +752,8 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'bytes32', name: 'role', type: 'bytes32'},
-      {internalType: 'address', name: 'account', type: 'address'},
+      { internalType: 'bytes32', name: 'role', type: 'bytes32' },
+      { internalType: 'address', name: 'account', type: 'address' },
     ],
     name: 'revokeRole',
     outputs: [],
@@ -755,8 +762,8 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'contract IERC20', name: '_mteToken', type: 'address'},
-      {internalType: 'contract Shoes', name: '_shoes', type: 'address'},
+      { internalType: 'contract IERC20', name: '_mteToken', type: 'address' },
+      { internalType: 'contract Shoes', name: '_shoes', type: 'address' },
       {
         internalType: 'contract IRandoms',
         name: '_randoms',
@@ -771,7 +778,7 @@ export const abiApp = [
   {
     inputs: [],
     name: 'getMyNFTs',
-    outputs: [{internalType: 'uint256[]', name: '', type: 'uint256[]'}],
+    outputs: [{ internalType: 'uint256[]', name: '', type: 'uint256[]' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -779,29 +786,29 @@ export const abiApp = [
   {
     inputs: [],
     name: 'countMyNFTs',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'nft_id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'nft_id', type: 'uint256' }],
     name: 'openBox',
     outputs: [
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'bool', name: '', type: 'bool'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
-      {internalType: 'uint8', name: '', type: 'uint8'},
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'bool', name: '', type: 'bool' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
+      { internalType: 'uint8', name: '', type: 'uint8' },
     ],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     inputs: [
-      {internalType: 'address', name: '_devWallet', type: 'address'},
+      { internalType: 'address', name: '_devWallet', type: 'address' },
     ],
     name: 'setDevWallet',
     outputs: [],
@@ -810,7 +817,7 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'uint256', name: '_mintBoxFee', type: 'uint256'},
+      { internalType: 'uint256', name: '_mintBoxFee', type: 'uint256' },
     ],
     name: 'setMintBoxFee',
     outputs: [],
@@ -819,7 +826,7 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'contract Shoes', name: '_nft', type: 'address'},
+      { internalType: 'contract Shoes', name: '_nft', type: 'address' },
     ],
     name: 'setNFTAddress',
     outputs: [],
@@ -828,7 +835,7 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'uint256', name: 'numberOfNFT', type: 'uint256'},
+      { internalType: 'uint256', name: 'numberOfNFT', type: 'uint256' },
     ],
     name: 'mintBox',
     outputs: [],
@@ -838,14 +845,14 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'uint8', name: 'hs_efficiency', type: 'uint8'},
-      {internalType: 'uint8', name: 'hs_durability', type: 'uint8'},
-      {internalType: 'uint8', name: 'hs_luck', type: 'uint8'},
-      {internalType: 'uint8', name: 'hs_comfort', type: 'uint8'},
-      {internalType: 'uint8', name: 'popularity', type: 'uint8'},
-      {internalType: 'uint8', name: 'nft_type', type: 'uint8'},
-      {internalType: 'address', name: 'owner', type: 'address'},
-      {internalType: 'uint256', name: 'mintShoesFee', type: 'uint256'},
+      { internalType: 'uint8', name: 'hs_efficiency', type: 'uint8' },
+      { internalType: 'uint8', name: 'hs_durability', type: 'uint8' },
+      { internalType: 'uint8', name: 'hs_luck', type: 'uint8' },
+      { internalType: 'uint8', name: 'hs_comfort', type: 'uint8' },
+      { internalType: 'uint8', name: 'popularity', type: 'uint8' },
+      { internalType: 'uint8', name: 'nft_type', type: 'uint8' },
+      { internalType: 'address', name: 'owner', type: 'address' },
+      { internalType: 'uint256', name: 'mintShoesFee', type: 'uint256' },
     ],
     name: 'sme',
     outputs: [],
@@ -854,11 +861,11 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'uint256', name: '_id', type: 'uint256'},
-      {internalType: 'address', name: 'new_owner', type: 'address'},
-      {internalType: 'address', name: 'old_owner', type: 'address'},
-      {internalType: 'uint256', name: 'price', type: 'uint256'},
-      {internalType: 'uint256', name: 'tax', type: 'uint256'},
+      { internalType: 'uint256', name: '_id', type: 'uint256' },
+      { internalType: 'address', name: 'new_owner', type: 'address' },
+      { internalType: 'address', name: 'old_owner', type: 'address' },
+      { internalType: 'uint256', name: 'price', type: 'uint256' },
+      { internalType: 'uint256', name: 'tax', type: 'uint256' },
     ],
     name: 'purchase',
     outputs: [],
@@ -867,8 +874,8 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'receiver', type: 'address'},
-      {internalType: 'uint256', name: '_id', type: 'uint256'},
+      { internalType: 'address', name: 'receiver', type: 'address' },
+      { internalType: 'uint256', name: '_id', type: 'uint256' },
     ],
     name: 'withdrawNFT',
     outputs: [],
@@ -877,8 +884,8 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'receiver', type: 'address'},
-      {internalType: 'uint256', name: 'total', type: 'uint256'},
+      { internalType: 'address', name: 'receiver', type: 'address' },
+      { internalType: 'uint256', name: 'total', type: 'uint256' },
     ],
     name: 'withdrawBNB',
     outputs: [],
@@ -887,8 +894,8 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'receiver', type: 'address'},
-      {internalType: 'uint256', name: 'total', type: 'uint256'},
+      { internalType: 'address', name: 'receiver', type: 'address' },
+      { internalType: 'uint256', name: 'total', type: 'uint256' },
     ],
     name: 'withdrawToken',
     outputs: [],
@@ -896,7 +903,7 @@ export const abiApp = [
     type: 'function',
   },
   {
-    inputs: [{internalType: 'uint256', name: '_id', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: '_id', type: 'uint256' }],
     name: 'depositNFT',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -911,7 +918,7 @@ export const abiApp = [
     payable: true,
   },
   {
-    inputs: [{internalType: 'uint256', name: 'total', type: 'uint256'}],
+    inputs: [{ internalType: 'uint256', name: 'total', type: 'uint256' }],
     name: 'depositToken',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -939,8 +946,8 @@ export const abiApp = [
   },
   {
     inputs: [
-      {internalType: 'uint256', name: 'shoesID', type: 'uint256'},
-      {internalType: 'address', name: 'playerAddress', type: 'address'},
+      { internalType: 'uint256', name: 'shoesID', type: 'uint256' },
+      { internalType: 'address', name: 'playerAddress', type: 'address' },
     ],
     name: 'approveContractShoesFor',
     outputs: [],
@@ -949,7 +956,7 @@ export const abiApp = [
   },
 ];
 export const abiToken = [
-  {inputs: [], stateMutability: 'nonpayable', type: 'constructor'},
+  { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
   {
     anonymous: false,
     inputs: [
@@ -1003,7 +1010,7 @@ export const abiToken = [
         name: 'from',
         type: 'address',
       },
-      {indexed: true, internalType: 'address', name: 'to', type: 'address'},
+      { indexed: true, internalType: 'address', name: 'to', type: 'address' },
       {
         indexed: false,
         internalType: 'uint256',
@@ -1016,29 +1023,29 @@ export const abiToken = [
   },
   {
     inputs: [
-      {internalType: 'address', name: 'owner', type: 'address'},
-      {internalType: 'address', name: 'spender', type: 'address'},
+      { internalType: 'address', name: 'owner', type: 'address' },
+      { internalType: 'address', name: 'spender', type: 'address' },
     ],
     name: 'allowance',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'spender', type: 'address'},
-      {internalType: 'uint256', name: 'amount', type: 'uint256'},
+      { internalType: 'address', name: 'spender', type: 'address' },
+      { internalType: 'uint256', name: 'amount', type: 'uint256' },
     ],
     name: 'approve',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [{internalType: 'address', name: 'account', type: 'address'}],
+    inputs: [{ internalType: 'address', name: 'account', type: 'address' }],
     name: 'balanceOf',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -1046,35 +1053,35 @@ export const abiToken = [
   {
     inputs: [],
     name: 'decimals',
-    outputs: [{internalType: 'uint8', name: '', type: 'uint8'}],
+    outputs: [{ internalType: 'uint8', name: '', type: 'uint8' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'spender', type: 'address'},
-      {internalType: 'uint256', name: 'subtractedValue', type: 'uint256'},
+      { internalType: 'address', name: 'spender', type: 'address' },
+      { internalType: 'uint256', name: 'subtractedValue', type: 'uint256' },
     ],
     name: 'decreaseAllowance',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     inputs: [
-      {internalType: 'address', name: 'spender', type: 'address'},
-      {internalType: 'uint256', name: 'addedValue', type: 'uint256'},
+      { internalType: 'address', name: 'spender', type: 'address' },
+      { internalType: 'uint256', name: 'addedValue', type: 'uint256' },
     ],
     name: 'increaseAllowance',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     inputs: [],
     name: 'name',
-    outputs: [{internalType: 'string', name: '', type: 'string'}],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -1082,7 +1089,7 @@ export const abiToken = [
   {
     inputs: [],
     name: 'owner',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -1097,7 +1104,7 @@ export const abiToken = [
   {
     inputs: [],
     name: 'symbol',
-    outputs: [{internalType: 'string', name: '', type: 'string'}],
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -1105,34 +1112,34 @@ export const abiToken = [
   {
     inputs: [],
     name: 'totalSupply',
-    outputs: [{internalType: 'uint256', name: '', type: 'uint256'}],
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
   },
   {
     inputs: [
-      {internalType: 'address', name: 'to', type: 'address'},
-      {internalType: 'uint256', name: 'amount', type: 'uint256'},
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'amount', type: 'uint256' },
     ],
     name: 'transfer',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
     inputs: [
-      {internalType: 'address', name: 'from', type: 'address'},
-      {internalType: 'address', name: 'to', type: 'address'},
-      {internalType: 'uint256', name: 'amount', type: 'uint256'},
+      { internalType: 'address', name: 'from', type: 'address' },
+      { internalType: 'address', name: 'to', type: 'address' },
+      { internalType: 'uint256', name: 'amount', type: 'uint256' },
     ],
     name: 'transferFrom',
-    outputs: [{internalType: 'bool', name: '', type: 'bool'}],
+    outputs: [{ internalType: 'bool', name: '', type: 'bool' }],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [{internalType: 'address', name: 'newOwner', type: 'address'}],
+    inputs: [{ internalType: 'address', name: 'newOwner', type: 'address' }],
     name: 'transferOwnership',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -1141,7 +1148,7 @@ export const abiToken = [
   {
     inputs: [],
     name: 'uniswapV2Pair',
-    outputs: [{internalType: 'address', name: '', type: 'address'}],
+    outputs: [{ internalType: 'address', name: '', type: 'address' }],
     stateMutability: 'view',
     type: 'function',
     constant: true,
@@ -1161,14 +1168,14 @@ export const abiToken = [
     constant: true,
   },
   {
-    inputs: [{internalType: 'address', name: '_address', type: 'address'}],
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
     name: 'excludeFromFee',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },
   {
-    inputs: [{internalType: 'address', name: '_address', type: 'address'}],
+    inputs: [{ internalType: 'address', name: '_address', type: 'address' }],
     name: 'includeInFee',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -1176,8 +1183,8 @@ export const abiToken = [
   },
   {
     inputs: [
-      {internalType: 'address', name: '_address', type: 'address'},
-      {internalType: 'bool', name: '_status', type: 'bool'},
+      { internalType: 'address', name: '_address', type: 'address' },
+      { internalType: 'bool', name: '_status', type: 'bool' },
     ],
     name: 'setBlacklist',
     outputs: [],
@@ -1186,8 +1193,8 @@ export const abiToken = [
   },
   {
     inputs: [
-      {internalType: 'address', name: '_lpAddress', type: 'address'},
-      {internalType: 'bool', name: '_status', type: 'bool'},
+      { internalType: 'address', name: '_lpAddress', type: 'address' },
+      { internalType: 'bool', name: '_status', type: 'bool' },
     ],
     name: 'setLiquidityPoolStatus',
     outputs: [],
@@ -1196,7 +1203,7 @@ export const abiToken = [
   },
   {
     inputs: [
-      {internalType: 'address', name: '_marketingPool', type: 'address'},
+      { internalType: 'address', name: '_marketingPool', type: 'address' },
     ],
     name: 'setMarketingPool',
     outputs: [],
@@ -1205,7 +1212,7 @@ export const abiToken = [
   },
   {
     inputs: [
-      {internalType: 'address', name: '_rewardPool', type: 'address'},
+      { internalType: 'address', name: '_rewardPool', type: 'address' },
     ],
     name: 'setRewardPool',
     outputs: [],
@@ -1214,9 +1221,9 @@ export const abiToken = [
   },
   {
     inputs: [
-      {internalType: 'uint8', name: '_sellTax', type: 'uint8'},
-      {internalType: 'uint8', name: '_buyTax', type: 'uint8'},
-      {internalType: 'uint8', name: '_mktFee', type: 'uint8'},
+      { internalType: 'uint8', name: '_sellTax', type: 'uint8' },
+      { internalType: 'uint8', name: '_buyTax', type: 'uint8' },
+      { internalType: 'uint8', name: '_mktFee', type: 'uint8' },
     ],
     name: 'setTaxes',
     outputs: [],
@@ -1227,8 +1234,8 @@ export const abiToken = [
     inputs: [],
     name: 'getTaxes',
     outputs: [
-      {internalType: 'uint8', name: '_sellTax', type: 'uint8'},
-      {internalType: 'uint8', name: '_buyTax', type: 'uint8'},
+      { internalType: 'uint8', name: '_sellTax', type: 'uint8' },
+      { internalType: 'uint8', name: '_buyTax', type: 'uint8' },
     ],
     stateMutability: 'view',
     type: 'function',

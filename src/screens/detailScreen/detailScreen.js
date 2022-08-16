@@ -35,7 +35,6 @@ const DetailSneaker = ({ route, }) => {
   useEffect(() => {
     dispath(getDetailRequest(route.params.id))
   }, [])
-  console.log(detailNft);
 
   const Progress = () => {
     return (

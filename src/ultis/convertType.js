@@ -13,14 +13,15 @@ export const convertType = num => {
 	      3: runner
 	      4: trainer
     **/
-  switch (num) {
-    case 1:
+   const type = typeof num === 'number' ? `${num}` : num
+  switch (type) {
+    case "0":
       return SneakerNFTType.walker;
-    case 2:
+    case "1":
       return SneakerNFTType.jogger;
-    case 3:
+    case "2":
       return SneakerNFTType.runner;
-    case 4:
+    case "3":
       return SneakerNFTType.trainer;
     default:
       return '';
@@ -44,18 +45,17 @@ export const convertPopularity = num => {
 	      4: epic
 	      5: legendary
     **/
-  switch (num) {
-    case 1:
+  const type = typeof num === 'number' ? `${num}` : num
+  switch (type) {
+    case "0":
       return SneakerPopularity.common;
-    case 2:
+    case "1":
       return SneakerPopularity.uncommon;
-    case 3:
+    case "2":
       return SneakerPopularity.rare;
-    case 4:
+    case "3":
       return SneakerPopularity.epic;
-    case 5:
+    case "4":
       return SneakerPopularity.legendary;
-    default:
-      return '';
   }
 };

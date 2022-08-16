@@ -12,7 +12,7 @@ const request = axios.create({
 
 const apiClient = {
   get: (url, data = {}) => {
-    console.log('url get: ', data);
+    // console.log('url get: ', data);
     return request({
       method: 'get',
       url: url,
@@ -26,7 +26,7 @@ const apiClient = {
       });
   },
   post: (url, data) => {
-    console.log('post ', { url }, { data });
+    // console.log('post ', { url }, { data });
     return request({
       method: 'post',
       url: url,
@@ -40,7 +40,7 @@ const apiClient = {
       });
   },
   patch: (url, data) => {
-    console.log('patch ', { url }, { data });
+    // console.log('patch ', { url }, { data });
     return request({
       method: 'patch',
       url: url,
