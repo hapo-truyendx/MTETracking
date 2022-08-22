@@ -6,5 +6,11 @@ export const palette = {
   keppelColor: '#36AFAD',
   tradewind: '#67a6b3',
   texasRose: '#fdc14d',
-  waterLeaf:'#a6e8de'
+  waterLeaf: '#a6e8de',
+  persianGreen: "#009F9C",
+  transparent: 'transparent',
+  bittersweet: "#FF6E6E",
+  heliotrope: '#AD6EFF',
+  macaroni: "#FFB26E",
+  hotPink: '#FF6EC0',
 }

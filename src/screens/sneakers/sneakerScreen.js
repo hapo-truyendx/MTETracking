@@ -24,6 +24,7 @@ import ItemSneaker from '../itemSneaker/itemSneaker';
 const SneakerScreen = () => {
   const dispatch = useDispatch();
   const nfts = useSelector(state => state.sneaker.listSneaker);
+  const nftsForSell = useSelector(state => state.sneaker.listSneakerForSell);
   const [indexTab, setIndexTab] = useState(0);
   const [listNft, setListNft] = useState();
 
@@ -47,6 +48,7 @@ const SneakerScreen = () => {
         // const popularity = convertPopularity(result[0]);
         // const nftType = convertType(result[1]);
         const sneaker = {
+          onchain_id: item,
           popularity: result[0],
           nftType: result[1],
           status: result[2] ? 1 : 0,
@@ -69,14 +71,13 @@ const SneakerScreen = () => {
 
   useEffect(() => {
     if (indexTab === 0) {
-      dispatch(getListSneakerRequest());
+      dispatch(getListSneakerRequest(0));
     } else if (indexTab === 1) {
       getMetamask();
     } else {
+      dispatch(getListSneakerRequest(1));
     }
   }, [indexTab]);
-
-  console.log(indexTab);
 
   const renderListNft = useMemo(() => {
     let data = [];
@@ -88,7 +89,7 @@ const SneakerScreen = () => {
         data = listNft;
         break;
       case 2:
-        data = [];
+        data = nftsForSell;
       default:
         break;
     }
@@ -96,14 +97,14 @@ const SneakerScreen = () => {
       <FlatList
         data={data}
         renderItem={(item, index) => {
-          return <ItemSneaker nfts={item.item} type={typeScreen.sneaker} />;
+          return <ItemSneaker nfts={item.item} type={typeScreen.sneaker} indexTab = {indexTab}/>;
         }}
         keyExtractor={index => index.toString() + Math.random()}
         numColumns={2}
         style={{ flex: 1 }}
       />
     )
-  }, [indexTab,listNft])
+  }, [indexTab,listNft,nftsForSell])
   return (
     <ImageBackground
       style={styles.container}

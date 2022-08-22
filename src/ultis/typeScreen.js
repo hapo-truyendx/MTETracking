@@ -3,5 +3,8 @@ export const typeScreen = {
   sneaker: 'sneaker',
   mint: 'mint',
   profile: 'profile',
-  isBig: 'isBig'
+  isBig: 'isBig',
+  inUse: 'inUse',
+  notUsedYet: 'notUsedYet',
+  forSale: 'forSale',
 };

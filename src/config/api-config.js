@@ -1,12 +1,10 @@
 const ApiConfig = {
-  // BASE_URL: 'https://mteapi.zdemo.asia',
   BASE_URL: 'https://test-api.stepm.app',
   // DEMO_TOKEN: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Mywid2FsbGV0IjoiMHhmNGU3M2I5ZGNjM2ZjYjJjOWM1YjFhNDhmYjczMjMwOTg2ZGJiNDZiIn0.adB58UUhIzdjRwoEc3EUbfWaSKHkN0HT6jiPuxIKtto',
   // DEMO_WALLET:'0xF4E73B9dcC3fcb2c9C5B1a48FB73230986DbB46B',
   DEMO_TOKEN:
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Miwid2FsbGV0IjoiMHhkZGExZjIxYjQzOTIwYmVlMmE4MmMwZjZlYWFjODBhMjAzZTg0ZDVlIn0.IamymnifLVtxSTTMJzcyEI4EQAr07qjfc1feEccQ00Y',
   DEMO_WALLET: '0xdda1f21b43920bee2a82c0f6eaac80a203e84d5e',
-  // DEMO_TOKEN: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwid2FsbGV0IjoiMHhmNGU3M2I5ZGNjM2ZjYjJjOWM1YjFhNDhmYjczMjMwOTg2ZGJiNDZiIn0.PnSj8cPpQTstzwzy0w5LpFk6LTO2U8wuCJ1u6DKIw2Q',
   LOGIN: '/api/v1/login',
   AUTH: '/api/v1/auth',
 

@@ -3,6 +3,7 @@ import * as types from '../action/type';
 const initialState = {
   listSneaker : [],
   detailSneaker: {},
+  listSneakerForSell : [],
 }
 
 const sneakerReducer = (state = initialState, action) => {
@@ -16,6 +17,12 @@ const sneakerReducer = (state = initialState, action) => {
       return {
         ...state,
         listSneaker: action.data,
+      }
+    }
+    case types.SNEAKER_LIST_FOR_SELL : {
+      return {
+        ...state,
+        listSneakerForSell: action.data
       }
     }
     case types.SNEAKER_DETAIL_REQUEST: {

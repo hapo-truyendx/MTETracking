@@ -21,7 +21,8 @@ const LoginScreen = () => {
   const [messageLogin, setLogin] = useState('');
   const connectWallet = async () => {
     await connector.connect()
-    // loginWallet(connector.accounts[0])
+    console.log(connector);
+    loginWallet(connector.accounts[0])
     
   };
 

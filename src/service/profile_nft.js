@@ -9,8 +9,9 @@ export function getUserTransaction() {
     return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_TRANSACTION}`)
 }
 
-export function getUserListNft() {
-    return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}`,  {"status": "0"})
+export function getUserListNft(data) {
+    console.log(data.toString(), 'params');
+    return apiClient.get(`${ApiConfig.BASE_URL}${ApiConfig.USER_LIST_NFT}`,  {"status": data.toString()})
 }
 
 export function getUserDetailNft() {

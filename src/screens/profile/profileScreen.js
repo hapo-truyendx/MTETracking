@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -12,11 +12,11 @@ import {
   TextInput,
 } from 'react-native';
 import Header from '../header/header';
-import {image} from '../../assets';
-import {TextCusTom} from '../../components/textCustom';
-import {en} from '../../i18n/en';
-import {palette} from '../../ultis/color';
-import {commonStyle, status, windowWidth} from '../../ultis/const';
+import { image } from '../../assets';
+import { TextCusTom } from '../../components/textCustom';
+import { en } from '../../i18n/en';
+import { palette } from '../../ultis/color';
+import { commonStyle, status, windowWidth, abiApp } from '../../ultis/const';
 import ItemSneaker from '../itemSneaker/itemSneaker';
 import ItemHistory from './itemHistory';
 import ItemTransation from './itemTransation';
@@ -29,6 +29,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileRequest, getRunHistoryRequest, getTransactionRequest } from '../../redux/action/profileAction';
 import { typeScreen } from '../../ultis/typeScreen';
+import Web3 from 'web3';
+import ApiConfig from '../../config/api-config';
 
 const ProfileScreen = () => {
   const dispatch = useDispatch();
@@ -36,13 +38,13 @@ const ProfileScreen = () => {
   const history = useSelector(state => state.profile.runHistory);
   const transaction = useSelector(state => state.profile.transaction);
 
-  const coins = [{title: en.stepm}, {title: 'BNB'}];
+  const coins = [{ title: en.stepm }, { title: 'BNB' }];
   const [typeTransaction, setTypeTransaction] = useState(0);
   const [type, setType] = useState(0);
   const getUserProfile = async () => {
     dispatch(getProfileRequest())
   };
-  
+
   useEffect(() => {
     if (type === 0) {
       dispatch(getRunHistoryRequest());
@@ -54,13 +56,34 @@ const ProfileScreen = () => {
     getUserProfile();
   }, []);
 
+  const depositBnb = async () => {
+    // const web3 = new Web3(ApiConfig.rpcUrl);
+    
+    // // 
+    // const add = web3.eth.accounts.wallet.add({accounts: ApiConfig.DEMO_WALLET});
+    // console.log(add, 'add');
+    // const accounts = await web3.eth.getAccounts()
+    // console.log(accounts)
+    // const depositBnb = new web3.eth.Contract(abiApp, ApiConfig.addressApp);
+    // console.log(depositBnb);
+    // depositBnb.methods.depositBNB().send(
+    //   {
+    //     from: ApiConfig.DEMO_WALLET, data: {
+    //       value: 0.01,
+    //     }
+    //   }
+    // ), (err, result) => {
+    //   console.log(result, '111');
+    // }
+  }
+
   return (
     // <Screen>
     <ImageBackground
       style={styles.container}
       source={image.appBackground}
-      imageStyle={{resizeMode: 'cover'}}>
-      <Header type= {typeScreen.profile} />
+      imageStyle={{ resizeMode: 'cover' }}>
+      <Header type={typeScreen.profile} />
       <ScrollView>
         <View
           style={{
@@ -68,26 +91,26 @@ const ProfileScreen = () => {
             justifyContent: 'space-around',
             marginVertical: 30,
           }}>
-          <View style={{...commonStyle.center}}>
-            <Image source={image.coinItem} style={{width: 80, height: 80}} />
+          <View style={{ ...commonStyle.center }}>
+            <Image source={image.coinItem} style={{ width: 80, height: 80 }} />
             <TextCusTom
               children={user?.token_reward ?? 0}
-              style={{fontSize: 40, fontWeight: 'bold', color: palette.white}}
+              style={{ fontSize: 40, fontWeight: 'bold', color: palette.white }}
             />
             <TextCusTom
               children={en.stepm}
-              style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
+              style={{ fontSize: 25, fontWeight: 'bold', color: palette.white }}
             />
           </View>
-          <View style={{...commonStyle.center}}>
-            <Image source={image.bnbCoin} style={{width: 80, height: 80}} />
+          <View style={{ ...commonStyle.center }}>
+            <Image source={image.bnbCoin} style={{ width: 80, height: 80 }} />
             <TextCusTom
               children={user?.total_bnb ?? 0}
-              style={{fontSize: 40, fontWeight: 'bold', color: palette.white}}
+              style={{ fontSize: 40, fontWeight: 'bold', color: palette.white }}
             />
             <TextCusTom
               children={'BNB'}
-              style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
+              style={{ fontSize: 25, fontWeight: 'bold', color: palette.white }}
             />
           </View>
         </View>
@@ -100,7 +123,7 @@ const ProfileScreen = () => {
               marginVertical: 20,
               borderRadius: 8,
             }}>
-            <View style={{...commonStyle.row, padding: 10, marginTop: -50}}>
+            <View style={{ ...commonStyle.row, padding: 10, marginTop: -50 }}>
               <TouchableOpacity
                 onPress={() => {
                   setTypeTransaction(0);
@@ -141,9 +164,9 @@ const ProfileScreen = () => {
               <TextInput
                 value={''}
                 onChangeText={value => value}
-                style={{flex: 2}}
+                style={{ flex: 2 }}
               />
-              <View style={{flex: 1.2}}>
+              <View style={{ flex: 1.2 }}>
                 <SelectDropdown
                   data={coins}
                   defaultValue={coins[0]}
@@ -160,7 +183,7 @@ const ProfileScreen = () => {
                     return (
                       <Image
                         source={image.dropDown}
-                        style={{width: 18, height: 18}}
+                        style={{ width: 18, height: 18 }}
                       />
                     );
                   }}
@@ -174,6 +197,7 @@ const ProfileScreen = () => {
                 />
               </View>
               <TouchableOpacity
+                onPress={depositBnb}
                 style={{
                   backgroundColor: palette.keppelColor,
                   padding: 7,
@@ -183,12 +207,12 @@ const ProfileScreen = () => {
                 }}>
                 <TextCusTom
                   children={typeTransaction === 0 ? en.deposit : en.withDraw}
-                  style={{color: palette.white, fontSize: 14}}
+                  style={{ color: palette.white, fontSize: 14 }}
                 />
               </TouchableOpacity>
             </View>
           </View>
-          <View style={{...commonStyle.row, padding: 10, marginTop: 20}}>
+          <View style={{ ...commonStyle.row, padding: 10, marginTop: 20 }}>
             <TouchableOpacity
               onPress={() => setType(0)}
               style={{
@@ -217,10 +241,10 @@ const ProfileScreen = () => {
               data={history}
               keyExtractor={index => index.toString() + Math.random()}
               renderItem={(item, index) => {
-                return <ItemHistory key={index} runs={item.item}/>;
+                return <ItemHistory key={index} runs={item.item} />;
               }}
               scrollEnabled={false}
-              style={{paddingBottom: 30}}
+              style={{ paddingBottom: 30 }}
             />
           ) : (
             <FlatList
@@ -230,7 +254,7 @@ const ProfileScreen = () => {
                 return <ItemTransation key={index} transaction={item.item} />;
               }}
               scrollEnabled={false}
-              style={{paddingBottom: 30}}
+              style={{ paddingBottom: 30 }}
             />
           )}
         </View>
@@ -251,13 +275,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: palette.white,
   },
-  dropdown2BtnTxtStyle: {color: palette.black, textAlign: 'left'},
-  dropdown2DropdownStyle: {backgroundColor: palette.white},
+  dropdown2BtnTxtStyle: { color: palette.black, textAlign: 'left' },
+  dropdown2DropdownStyle: { backgroundColor: palette.white },
   dropdown2RowStyle: {
     backgroundColor: palette.white,
     borderBottomColor: palette.white,
   },
-  dropdown2RowTxtStyle: {color: palette.black, textAlign: 'left'},
+  dropdown2RowTxtStyle: { color: palette.black, textAlign: 'left' },
   dropdown2BtnStyle: {
     width: 100,
     backgroundColor: palette.white,

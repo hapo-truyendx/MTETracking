@@ -10,6 +10,13 @@ export const getAssetImage = ({ nftType, popularity
   return `${assetImagePath}/${nftType}-${popularity}.png`;
 }
 
+export const maxHs = {
+  maxDurability: 120,
+  maxMint: 6,
+  maxLevel: 30,
+  maxProgressBar: 100,
+}
+
 export const configDetail = {
   maxDurability: 120,
   maxMint: 6,
