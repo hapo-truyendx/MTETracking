@@ -10,6 +10,7 @@ const Sneaker = createNativeStackNavigator();
 const SneakerStack = () => {
   return (
     <Sneaker.Navigator
+      initialRouteName='SneakerScreen'
       screenOptions={{
         headerShown: false,
       }}>

@@ -26,7 +26,7 @@ const ItemSneaker = ({ nfts, type, mintAction = () => { }, indexTab = 0 }) => {
     dispatch(onBuyItemNfts(nfts?.id));
   };
   const selectNft = useMemo(() => {
-    if (selectItem.includes(nfts?.id)) {
+    if (selectItem?.includes(nfts?.id)) {
       return (
         <View
           style={{
@@ -55,6 +55,7 @@ const ItemSneaker = ({ nfts, type, mintAction = () => { }, indexTab = 0 }) => {
             navigation.navigate('Detail', {
               id: nfts?.id,
               type: type,
+              indexTab: indexTab
             });
           }
         }}>

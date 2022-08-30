@@ -16,6 +16,8 @@ import {en} from '../../i18n/en';
 import {palette} from '../../ultis/color';
 import {commonStyle, windowWidth} from '../../ultis/const';
 import {ProgressBar, MD3Colors} from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+import PercentageBar from '../../components/progressCustom';
 
 const RunSneaker = () => {
   const typeStyle = {
@@ -24,6 +26,8 @@ const RunSneaker = () => {
     fontSize: 15,
     padding: 5,
   };
+
+  const navigation = useNavigation()
 
   return (
     <ImageBackground
@@ -35,7 +39,7 @@ const RunSneaker = () => {
           children={en.choose}
           style={{fontSize: 25, fontWeight: 'bold', color: palette.white}}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress = {() => navigation.goBack()}>
           <Image source={image.close} style={{width: 36, height: 36}} />
         </TouchableOpacity>
       </View>
@@ -86,15 +90,7 @@ const RunSneaker = () => {
               <TextCusTom children={'16/25'} />
             </View>
             <View style={{justifyContent: 'center', alignItems: 'flex-end'}}>
-              <ProgressBar
-                progress={0.5}
-                color={palette.white}
-                style={{
-                  padding: 10,
-                  borderRadius: 10,
-                  width: windowWidth - 100,
-                }}
-              />
+              <PercentageBar />
               <TextCusTom children={'12 STEPM'} />
             </View>
           </View>

@@ -39,12 +39,11 @@ const DetailSneaker = ({ route, }) => {
     dispatch(getDetailRequest(route.params.id))
   }, [])
 
-  console.log(detailNft, 'detai');
   const onBuyNft = async () => {
     dispatch(onBuyItemNfts(detailNft?.onchain_id));
   };
 
-  const Progress = ({ text, colorComplete = palette.transparent, percentage }) => {
+  const Progress = ({ text, colorComplete = palette.transparent, percentage, pushPoint = false }) => {
 
     return (
       <View style={{ ...commonStyle.row, marginVertical: 10 }}>
@@ -59,14 +58,14 @@ const DetailSneaker = ({ route, }) => {
               alignItems: 'flex-start',
               paddingLeft: 10,
             }}>
-            <TextCusTom children={text} style={{ color: palette.white }} numberOfLines = {1}/>
+            <TextCusTom children={text} style={{ color: palette.white }} numberOfLines={1} />
           </View>
         </View>
         <View style={{ ...commonStyle.row, flex: 1 }}>
           <TextCusTom children={percentage} />
-          {/* <View>
+          {pushPoint && <TouchableOpacity style={{backgroundColor: palette.texasRose,padding: 5, borderRadius: 100, marginLeft: 3}}>
             <TextCusTom children={'+1'} />
-          </View> */}
+          </TouchableOpacity>}
         </View>
       </View>
     );
@@ -76,8 +75,10 @@ const DetailSneaker = ({ route, }) => {
       style={styles.container}
       source={image.appBackground}
       imageStyle={{ resizeMode: 'cover' }}>
-      <View style={{ ...commonStyle.row_between,
-      paddingVertical: 10 }}>
+      <View style={{
+        ...commonStyle.row_between,
+        paddingVertical: 10
+      }}>
         <TextCusTom
           children={detailNft.onchain_id}
           style={{ fontSize: 25, fontWeight: 'bold', color: palette.black }}
@@ -127,26 +128,29 @@ const DetailSneaker = ({ route, }) => {
               completedColor={palette.persianGreen}
               percentage={`${(detailNft?.level / detailNft?.level_max) * 100}%`}
             />
-            {route.params?.type === typeScreen.inUse && <View style={{ ...commonStyle.row_between }}>
+            {route.params?.type === typeScreen.sneaker && route.params?.indexTab == 0 && (detailNft?.level < detailNft?.level_max ?  <View style={{ ...commonStyle.row_between, flex: 1 }}>
               <TextCusTom
-                children={`Up to next level with fee: ${detailNft?.up_level_fee} STEPM`}
-                style={{ ...styles.text, fontSize: 13 }}
+                children={ `Up to level ${detailNft?.level + 1} with fee: ${detailNft?.up_level_fee} STEPM`}
+                style={{ ...styles.text, fontSize: 13, flex: 7 }}
               />
               <TouchableOpacity
                 style={{
                   ...commonStyle.row,
+                  flex: 2,
                   backgroundColor: palette.white,
-                  padding: 8,
-                  paddingHorizontal: 20,
+                  paddingHorizontal: 10,
                   borderRadius: 5,
                 }}>
                 <Image
                   source={image.filter}
-                  style={{ width: 36, height: 36, marginRight: 15 }}
+                  style={{ width: 15, height: 15, marginRight: 15 }}
                 />
-                <TextCusTom children={en.filter} />
+                <TextCusTom children={'UP NOW'} style={{ fontSize: 13, flex: 7 }}/>
               </TouchableOpacity>
-            </View>}
+            </View> : <TextCusTom
+                children={ 'Sneaker max level'}
+                style={{ ...styles.text, fontSize: 13, flex: 7 }}
+              />)}
           </View>
           <View>
             <TextCusTom children={`Durability ${detailNft?.durability ?? 0}/${configDetail.maxDurability}`} style={styles.text} />
@@ -156,24 +160,24 @@ const DetailSneaker = ({ route, }) => {
               completedColor={palette.persianGreen}
               percentage={`${(detailNft?.durability / configDetail.maxDurability) * 100}%`}
             />
-            {route.params?.type === typeScreen.inUse && <View style={{ ...commonStyle.row_between }}>
+            {route.params?.type === typeScreen.sneaker && route.params?.indexTab == 0 && detailNft?.durability < configDetail.maxDurability &&  <View style={{ ...commonStyle.row_between, flex:1 }}>
               <TextCusTom
                 children={`Repair with fee: ${detailNft?.repair_fee} STEPM`}
-                style={{ ...styles.text, fontSize: 13 }}
+                style={{ ...styles.text, fontSize: 13, flex: 5 }}
               />
               <TouchableOpacity
                 style={{
                   ...commonStyle.row,
+                  flex: 2,
                   backgroundColor: palette.white,
-                  padding: 8,
-                  paddingHorizontal: 20,
+                  paddingHorizontal: 10,
                   borderRadius: 5,
                 }}>
                 <Image
                   source={image.filter}
-                  style={{ width: 36, height: 36, marginRight: 15 }}
+                  style={{ width: 15, height: 15, marginRight: 15 }}
                 />
-                <TextCusTom children={en.filter} />
+                <TextCusTom children={'REPAIR NOW'} style={{fontSize: 13, flex: 3 }} />
               </TouchableOpacity>
             </View>}
           </View>
@@ -192,7 +196,7 @@ const DetailSneaker = ({ route, }) => {
             children={'Attributes'}
             style={{ fontSize: 25, fontWeight: 'bold', color: palette.black }}
           />
-          {route.params?.type === typeScreen.inUse && <TouchableOpacity
+          {route.params?.type === typeScreen.sneaker && route.params?.indexTab === 0 && <TouchableOpacity
             style={{
               ...commonStyle.row,
               backgroundColor: palette.white,
@@ -200,13 +204,13 @@ const DetailSneaker = ({ route, }) => {
               paddingHorizontal: 20,
               borderRadius: 5,
             }}>
-            <TextCusTom children={en.filter} />
+            <TextCusTom children={`Available point: 0`} />
           </TouchableOpacity>}
         </View>
-        <Progress text={'Efficiency'} colorComplete={palette.bittersweet} percentage={`${(detailNft?.hs_efficiency / maxHs.maxProgressBar )* maxHs.maxProgressBar}%`} />
-        <Progress text={'Durability'} colorComplete={palette.heliotrope} percentage={`${(detailNft.hs_durability / maxHs.maxDurability).toFixed(2) * maxHs.maxProgressBar}%`} />
-        <Progress text={'Comfort'} colorComplete={palette.macaroni} percentage={`${(detailNft?.hs_comfort / maxHs.maxProgressBar) * maxHs.maxProgressBar}%`} />
-        <Progress text={'Luck'} colorComplete={palette.hotPink} percentage={`${(detailNft?.hs_luck / maxHs.maxProgressBar) * maxHs.maxProgressBar}%`} />
+        <Progress text={'Efficiency'} colorComplete={palette.bittersweet} percentage={`${(detailNft?.hs_efficiency / maxHs.maxProgressBar) * maxHs.maxProgressBar}%`} pushPoint = {true}/>
+        <Progress text={'Durability'} colorComplete={palette.heliotrope} percentage={`${(detailNft.hs_durability / maxHs.maxDurability).toFixed(2) * maxHs.maxProgressBar}%`} pushPoint = {true}/>
+        <Progress text={'Comfort'} colorComplete={palette.macaroni} percentage={`${(detailNft?.hs_comfort / maxHs.maxProgressBar) * maxHs.maxProgressBar}%`} pushPoint = {true}/>
+        <Progress text={'Luck'} colorComplete={palette.hotPink} percentage={`${(detailNft?.hs_luck / maxHs.maxProgressBar) * maxHs.maxProgressBar}%`} pushPoint = {true}/>
         {route.params?.type === typeScreen.sneaker && <View
           style={{
             ...commonStyle.row,
@@ -277,7 +281,7 @@ const DetailSneaker = ({ route, }) => {
         </TouchableOpacity>
       )}
       {route.params?.type === typeScreen.sneaker && (
-        <TouchableOpacity
+        route.params?.indexTab === 0 ? <TouchableOpacity
           style={{
             borderRadius: 8,
             backgroundColor: palette.texasRose,
@@ -285,37 +289,54 @@ const DetailSneaker = ({ route, }) => {
           }}
           activeOpacity={0.9}
           onPress={() => {
-            onBuyNft();
+            navigation.navigate('Run')
           }}>
-          <View
-            style={{
-              ...commonStyle.row_between,
-              justifyContent: "space-between",
-              // justifyContent: 'flex-start',
-            }}>
-            <View style={{ ...commonStyle.center, marginLeft: 50, }}>
+            <View style={{ ...commonStyle.center }}>
               <TextCusTom
-                children={'Cancel'}
+                children={'Start Run'}
                 style={{ color: palette.black, paddingHorizontal: 10, fontSize: 25, color: palette.white, fontWeight: 'bold', }}
               />
-            </View>
+            </View> 
+        </TouchableOpacity> :
+
+          <TouchableOpacity
+            style={{
+              borderRadius: 8,
+              backgroundColor: palette.texasRose,
+              padding: 10,
+            }}
+            activeOpacity={0.9}
+            onPress={() => {
+              onBuyNft();
+            }}>
             <View
               style={{
-                ...commonStyle.row,
-                backgroundColor: palette.white,
-                padding: 5,
-                paddingHorizontal: 20,
-                margin: 3,
-                borderRadius: 5,
+                ...commonStyle.row_between,
+                justifyContent: "space-between",
               }}>
-              <TextCusTom
-                children={detailNft?.price.toFixed(2)}
-                style={{ color: palette.white, paddingHorizontal: 10, color: palette.texasRose }}
-              />
-              <Image source={image.bnbCoin} style={{ width: 20, height: 20 }} />
+              <View style={{ ...commonStyle.center, marginLeft: 50, }}>
+                <TextCusTom
+                  children={'Cancel'}
+                  style={{ color: palette.black, paddingHorizontal: 10, fontSize: 25, color: palette.white, fontWeight: 'bold', }}
+                />
+              </View>
+              <View
+                style={{
+                  ...commonStyle.row,
+                  backgroundColor: palette.white,
+                  padding: 5,
+                  paddingHorizontal: 20,
+                  margin: 3,
+                  borderRadius: 5,
+                }}>
+                <TextCusTom
+                  children={detailNft?.price.toFixed(2)}
+                  style={{ color: palette.white, paddingHorizontal: 10, color: palette.texasRose }}
+                />
+                <Image source={image.bnbCoin} style={{ width: 20, height: 20 }} />
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
       )}
     </ImageBackground>
   );

@@ -9,6 +9,7 @@ const Mint = createNativeStackNavigator();
 const MintStack = () => {
   return (
     <Mint.Navigator
+    initialRouteName='MintScreen'
       screenOptions={{
         headerShown: false,
       }}>

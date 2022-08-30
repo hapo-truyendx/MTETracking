@@ -63,7 +63,7 @@ const MintScreen = () => {
             margin: 10,
             borderRadius: 8,
           }}>
-          {selected.length == 0 ? (
+          {selected?.length == 0 ? (
             <TouchableOpacity
               onPress={onMint}
               style={{
